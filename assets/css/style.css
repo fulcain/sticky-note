@@ -1,0 +1,86 @@
+/* General Changes START*/
+* {
+    font-family: cursive;
+
+}
+
+.container {
+    width: 1100px;
+    margin: 0 auto;
+}
+/* icon styles START */
+
+.icon-styles {
+    transition: .1s ;
+    cursor: pointer;
+    font-size: 30px;  
+}
+.icon-styles:hover{
+    transform: scale(1.1);
+}
+.icon-styles:active{
+    transform: scale(.9);
+}
+/* icon styles END */
+/* General Changes END*/
+/* add new note START */
+.add-new-note {
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    background-color: blue;
+    color: white;
+    border-radius: 50px;
+    width: max-content;
+}
+/* input (add new note input) START */
+#add-new-note-input{
+    padding: 10px;
+    color: white;
+    border: none;
+    outline: none;
+    background-color: transparent;
+
+}
+#add-new-note-input::placeholder{
+    color: white;
+}
+/* input (add new note input) END */
+/* add new note END */
+/* Whole note box START */
+.whole-notes-box {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+
+    padding: 50px;
+
+}
+
+/* each note box START */
+.each-note-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: red;
+    min-width: 200px;
+    min-height: 200px;
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+}
+/* note attributes START */
+.note-attributes{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.note-attributes i{
+    cursor: pointer;
+    font-size: 20px;
+}
+/* note attributes END */
+/* each note box END */
+/* Whole note box END */
