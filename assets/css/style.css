@@ -4,83 +4,120 @@
 
 }
 
+
 .container {
     width: 1100px;
     margin: 0 auto;
+    background: #eee;
+    padding: 20px;
 }
+
+.editing {
+    outline: none;
+}
+
 /* icon styles START */
 
 .icon-styles {
-    transition: .1s ;
+    transition: .1s;
     cursor: pointer;
-    font-size: 30px;  
+    font-size: 30px;
 }
-.icon-styles:hover{
+
+.icon-styles:hover {
     transform: scale(1.1);
 }
-.icon-styles:active{
+
+.icon-styles:active {
     transform: scale(.9);
 }
+.bx-trash:hover{
+    color: red;
+}
+.bx-save:hover{
+    color:blue;
+}
 /* icon styles END */
-/* General Changes END*/
-/* add new note START */
-.add-new-note {
-    margin-top: 10px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    background-color: blue;
-    color: white;
-    border-radius: 50px;
-    width: max-content;
-}
-/* input (add new note input) START */
-#add-new-note-input{
-    padding: 10px;
-    color: white;
-    border: none;
-    outline: none;
-    background-color: transparent;
-
-}
-#add-new-note-input::placeholder{
-    color: white;
-}
-/* input (add new note input) END */
-/* add new note END */
-/* Whole note box START */
-.whole-notes-box {
-    display: flex;
-    justify-content: flex-start;
-    gap: 20px;
-
-    padding: 50px;
-
-}
-
-/* each note box START */
-.each-note-box{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    background-color: red;
-    min-width: 200px;
-    min-height: 200px;
-    border-radius: 10px;
-    padding: 20px;
-    color: white;
-}
 /* note attributes START */
-.note-attributes{
+.note-attributes {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
 }
-.note-attributes i{
+
+.note-attributes i {
     cursor: pointer;
     font-size: 20px;
 }
+
 /* note attributes END */
-/* each note box END */
-/* Whole note box END */
+/* whole note box styles START */
+.whole-note-box-styles {
+    padding: 20px 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    padding-top: 50px;
+}
+
+/* each note box styles START*/
+.each-note-box-styles:not(i) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-width: 196px;
+    max-width: 196px;
+    min-height: 196px;
+    border-radius: 5px 5px 45px 5px ;
+    padding: 15px;
+    color: rgb(44, 44, 44);
+    box-shadow: 1px 1px 10px black;
+    
+}
+
+/* each note box styles END*/
+/* whole note box styles END */
+/* General Changes END*/
+/* header START */
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.header img{
+    width: 50px;
+    vertical-align: middle;
+    border-radius: 20%;
+
+}
+textarea{
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+/* header END */
+/* add new note START */
+.add-new-note {
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    gap: 10px;
+    width: max-content;
+    color: black;
+    border-radius: 50px;
+
+}
+.add-new-note i:hover{
+ color: rgb(29, 29, 29);
+}
+
+/* add new note END */
+
+
+

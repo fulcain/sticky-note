@@ -18,24 +18,59 @@
 <body>
     <!-- container START -->
     <div class="container">
-        <!-- add new note START-->
-        <div class="add-new-note">
-            <input type="text" name="" id="add-new-note-input" placeholder="Write your new note here">
-            <i class='bx bxs-plus-circle icon-styles' id="add-note-btn"></i>
-        </div>
-        <!-- add new note END-->
-        <!-- whole notes box START -->
-        <div class="whole-notes-box">
-            <div class="each-note-box">
-                <p>some note goes here</p>
-                <div class="note-attributes">
-                    <i class='bx bxs-pencil icon-styles' id="edit-note-btn" ></i>
-                    <i class='bx bx-trash icon-styles' id="delete-note-btn" ></i>
-                </div>
+
+        <!-- ReminderS text START -->
+        <div class="header">
+            <h3 id="reminder-text">Reminders</h3>
+            <div>
+                <img src="assets/images/Fulcain.png" alt="fulcain.png">
             </div>
-            <!-- whole notes box END -->
         </div>
+
+        <!-- ReminderS text END -->
+
+        <!-- to do list note box START -->
+        <!-- add new todo note START-->
+        <div class="add-new-note">
+            <h2 id="todo-list-test">ToDo list</h2>
+            <i class='bx bxs-plus-circle icon-styles' id="add-todo-note-btn"></i>
+        </div>
+        <!-- add new todo note END-->
+        <div class="todo-list-note-box whole-note-box-styles">
+            <!-- <div class="each-todo-list-note-box each-note-box-styles">
+                <p class="editing" contenteditable>Todo List</p>
+                <div class="note-attributes">
+                    <i class='bx bx-save icon-styles todo-save-note-btn'></i>
+                    <i class='bx bx-trash icon-styles todo-delete-note-btn'></i>
+                </div>
+            </div> -->
+
+        </div>
+        <!-- to do list note box END -->
+        <!-- upcomming list note box START -->
+        <!-- add new upcomming note START-->
+        <div class="add-new-note">
+            <h2 id="todo-list-test">Upcoming List</h2>
+            <i class='bx bxs-plus-circle icon-styles' id="add-upcomming-note-btn"></i>
+        </div>
+        <!-- add new upcomming note END-->
+        <div class="upcoming-list-note-box whole-note-box-styles">
+
+
+            <!-- <div class="each-upcoming-list-note-box each-note-box-styles">
+                <p class="editing" contenteditable>Upcoming list</p>
+                <div class="note-attributes">
+                    <i class='bx bx-save icon-styles upcoming-save-note-btn'></i>
+                    <i class='bx bx-trash icon-styles upcoming-delete-note-btn'></i>
+                </div>
+            </div> -->
+
+
+        </div>
+        <!-- upcomming list note box END -->
+
         <!-- container END -->
+
         <!-- js link  -->
         <script src="assets/js/script.js"></script>
 </body>
