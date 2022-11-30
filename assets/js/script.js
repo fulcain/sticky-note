@@ -138,4 +138,9 @@ loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
 
 
 
+// temporary localStorage clear
+const LocalStorageClear = document.querySelector("#ClearLocalStorage")
+LocalStorageClear.addEventListener("dblclick", () =>{
+    localStorage.clear()
+})
 
