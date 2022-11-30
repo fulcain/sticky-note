@@ -4,9 +4,10 @@
 
 }
 
-body{
-    background:#A9D39E;
+body {
+    background: #A9D39E;
 }
+
 .container {
     width: 1300px;
     margin: 25px auto;
@@ -36,9 +37,10 @@ body{
     transform: scale(.9);
 }
 
-.bx-trash{
+.bx-trash {
     font-size: 50px;
 }
+
 .bx-trash:hover {
     color: red;
 }
@@ -128,11 +130,13 @@ body{
     border-radius: 50px;
 
 }
-.add-new-note h2{
+
+.add-new-note h2 {
     position: relative;
 
 }
-.add-new-note h2::before{
+
+.add-new-note h2::before {
     content: '';
     /* position: absolute; */
     width: 10px;
@@ -147,17 +151,18 @@ body{
 }
 
 /* empty text START */
-.empty-text{
+.empty-text {
     min-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 /* empty text END */
 /* add new note END */
 
 
-#ClearLocalStorage{
+#ClearLocalStorage {
     position: absolute;
     top: 5px;
     color: red;
@@ -165,7 +170,99 @@ body{
     cursor: pointer;
     transition-duration: .2s;
 }
-#ClearLocalStorage:hover{
+
+#ClearLocalStorage:hover {
     transform: scale(1.2);
 
 }
+
+
+/* Media query */
+/* for 1024px */
+@media only screen and (max-width:1024px) {
+    .container {
+        width: 900px;
+    }
+
+    .whole-note-box-styles {
+        gap: 30px;
+    }
+}
+/* for 768px */
+@media only screen and (max-width:768px) {
+    .container {
+        width: 650px;
+    }
+    
+    .whole-note-box-styles {
+        gap: 30px;
+    }
+}
+/* for 425px */
+@media only screen and (max-width:425px) {
+    .container {
+        width: 350px;
+    }
+
+    .each-note-box-styles {
+        min-width: 200px;
+        max-width: 200px;
+        min-height: 200px;
+        
+        
+    }
+    .add-new-note {
+        
+        margin:20px 0 0 0 ;
+        display: flex;
+        align-items: center;
+        vertical-align: middle;
+        gap: 10px;
+        width: max-content;
+        color: black;
+        border-radius: 50px;
+    }
+    .header img{
+        width: 30px;
+    }
+    .whole-note-box-styles {
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        gap: 30px;
+        
+    }
+}
+/* for 320px */
+@media only screen and (max-width:320px) {
+    .container {
+        width: 290px;
+    }
+
+    /* .whole-note-box-styles {
+        gap: 30px;
+    } */
+    .each-note-box-styles {
+        min-width: 180px;
+        max-width: 180px;
+        min-height: 180px;
+
+    
+    }
+    .add-new-note {
+        margin:30px 0 0 0 ;
+
+    }
+    .header{
+
+        gap: 10px;
+    }
+    .header img{
+        width: 20px;
+    }
+    .header h3{
+        font-size: 12px;
+    }
+}
+
+
