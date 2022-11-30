@@ -1,3 +1,4 @@
+// localStorage.clear()
 // ----------------------------------------- general START -----------------------------------------
 // add new note function
 function addNote(boxEl, classes, deleteBtnName) {
@@ -8,14 +9,12 @@ function addNote(boxEl, classes, deleteBtnName) {
         <i class='bx bx-trash icon-styles ${deleteBtnName}'></i>
         </div>
         </div>`
-
 }
-// load items function
-function loaditem(loadWholeBox, loadEachBox, wholeBoxClass, eachBoxClass) {
-    loadWholeBox = document.querySelector(wholeBoxClass)
-    for (let i = 0; i < loadEachBox.length; i++) {
-        loadEachBox[i] = document.querySelectorAll(eachBoxClass)
-    }
+
+function loadItems() {
+
+    toDoNoteBoxEl = document.querySelector(".todo-list-note-box")
+    upcomingNoteBoxEl = document.querySelector(".upcoming-list-note-box")
 }
 // remove note function
 function removeNote(removeBtnName, removeNoteCategory, deleteBtnClassName, eachNoteName) {
@@ -24,26 +23,26 @@ function removeNote(removeBtnName, removeNoteCategory, deleteBtnClassName, eachN
     removeNoteCategory = document.querySelectorAll(eachNoteName)
     // loops throw the nodelist
     for (let i = 0; i < removeBtnName.length; i++) {
+
         removeBtnName[i].addEventListener("dblclick", () => {
+
+            // removeNoteCategory[i].style.display = 'none'
             removeNoteCategory[i].remove()
         })
     }
 
 }
 
-
-// save notes to their own array and localStorage key
 function saveNoteToLocalStorage(saveBtName, NoteCategory, saveBtnClassName, wholeListName, arrayName, keyName) {
     // updates both btns and notes
-
     saveBtName = document.querySelectorAll(saveBtnClassName)
     NoteCategory = document.querySelectorAll(wholeListName)
     // loops throw the nodelist
     for (let j = 0; j < saveBtName.length; j++) {
         saveBtName[j].addEventListener("click", () => {
-
-            arrayName += NoteCategory[j].innerHTML
-            localStorage.setItem(keyName, JSON.stringify(arrayName))
+            
+                arrayName.push(NoteCategory[j].innerHTML)
+                localStorage.setItem(keyName, JSON.stringify(arrayName))
         })
     }
 }
@@ -55,10 +54,10 @@ function loadFromLocalStorageToInnerHtml(localStorageName, noteBoxElement) {
     }
 }
 // takes random color from the array
-let colorChangeArr = ['#ff7eb9', '#ff65a3', '#7afcff', '#feff9c', '#fff740', '#2B3A55', '#CE7777', '#E8C4C4']
+let colorChangeArr = ['#ff7eb9', '#ff65a3', '#7afcff', '#feff9c', '#fff740']
 let colorChangeLoop = 0
 function colorChange() {
-    colorChangeLoop = Math.floor(Math.random() * 8)
+    colorChangeLoop = Math.floor(Math.random() * 5)
 }
 
 
@@ -67,6 +66,7 @@ function colorChange() {
 // ----------------------------------------- todo list START -----------------------------------------
 
 // all variables used in todo list
+
 // todo list whole note box
 let toDoNoteBoxEl = document.querySelector(".todo-list-note-box")
 
@@ -124,7 +124,7 @@ let upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey'))
 // if(upcomingLocalStorage){
 //     upcomingNoteBoxEl.innerHTML += upcomingLocalStorage
 // }
-loaditem(upcomingNoteBoxEl, eachUpComingNote, ".upcoming-list-note-box", ".each-upcoming-list-note-box")
+
 //adds new upcomming note
 addUpcommingBtnEL.addEventListener("click", () => {
     colorChange()
@@ -134,8 +134,7 @@ addUpcommingBtnEL.addEventListener("click", () => {
 })
 
 loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
+
+
 // ----------------------------------------- Upcomming list END -----------------------------------------
-
-
-
 

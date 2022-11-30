@@ -4,13 +4,11 @@
 
 }
 
-body{
-    background:#A9D39E;
-}
+
 .container {
-    width: 1300px;
-    margin: 25px auto;
-    background: rgb(255, 255, 255);
+    width: 1100px;
+    margin: 10px auto;
+    background: #eee;
     padding: 20px;
     border-radius: 10px;
 }
@@ -36,9 +34,6 @@ body{
     transform: scale(.9);
 }
 
-.bx-trash{
-    font-size: 50px;
-}
 .bx-trash:hover {
     color: red;
 }
@@ -63,10 +58,11 @@ body{
 /* note attributes END */
 /* whole note box styles START */
 .whole-note-box-styles {
-    padding: 70px;
+    padding: 20px 0;
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 70px;
+    gap: 20px;
 
     padding-top: 50px;
 }
@@ -80,13 +76,14 @@ body{
     flex-direction: column;
     justify-content: space-between;
 
-    min-width: 220px;
-    max-width: 220px;
-    min-height: 200px;
-    /* border: 3px solid rgb(63, 63, 63); */
+    min-width: 196px;
+    max-width: 196px;
+    min-height: 196px;
+    border: 2px solid rgb(63, 63, 63);
     border-radius: 30px 5px 30px 5px;
+    border-color: red rebeccapurple black red;
     padding: 15px;
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
+    box-shadow: 1px 1px 5px rgb(63, 63, 63);
 
 }
 
@@ -95,7 +92,6 @@ body{
 /* General Changes END*/
 /* header START */
 .header {
-    margin: 25px 70px 0 70px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -117,8 +113,7 @@ body{
 /* header END */
 /* add new note START */
 .add-new-note {
-
-    margin: 20px 0 0 70px;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     vertical-align: middle;
@@ -128,30 +123,9 @@ body{
     border-radius: 50px;
 
 }
-.add-new-note h2{
-    position: relative;
 
-}
-.add-new-note h2::before{
-    content: '';
-    /* position: absolute; */
-    width: 10px;
-    height: 10px;
-    left: 0;
-    color: black;
-    border-radius: 100%;
-}
-
-.add-new-note i:first-of-type:hover {
+.add-new-note i:first-of-type {
     color: rgb(29, 29, 29);
 }
 
-/* empty text START */
-.empty-text{
-    min-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-/* empty text END */
 /* add new note END */
