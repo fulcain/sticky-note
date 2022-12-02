@@ -37,7 +37,9 @@ function removeNote(removeBtnName, removeNoteCategory, deleteBtnClassName, eachN
         for (let i = 0; i < removeBtnName.length; i++) {
         removeBtnName[i].addEventListener("dblclick", () => {
             removeNoteCategory[i].remove()
+            ChangeTitles('---------- Note Deleted! ----------')
         })
+        
     }
 
 
