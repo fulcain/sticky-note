@@ -33,14 +33,14 @@ function removeNote(removeBtnName, removeNoteCategory, deleteBtnClassName, eachN
     removeBtnName = document.querySelectorAll(deleteBtnClassName)
     removeNoteCategory = document.querySelectorAll(eachNoteName)
     // loops throw the nodelist
-    removeBtnName.forEach(item => {
-        item.addEventListener("dblclick", () => {
-            removeNoteCategory.forEach(item => {
-                item.remove()
-            })
-            ChangeTitles('---------- Note Removed! ----------')
+
+        for (let i = 0; i < removeBtnName.length; i++) {
+        removeBtnName[i].addEventListener("dblclick", () => {
+            removeNoteCategory[i].remove()
         })
-    })
+    }
+
+
 }
 
 // save notes to their own array and localStorage key
