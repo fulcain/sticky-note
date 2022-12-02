@@ -10,42 +10,55 @@ function addNote(boxEl, classes, deleteBtnName) {
         </div>`
 
 }
-// load items function
-function loaditem(loadWholeBox, loadEachBox, wholeBoxClass, eachBoxClass) {
-    loadWholeBox = document.querySelector(wholeBoxClass)
-    for (let i = 0; i < loadEachBox.length; i++) {
-        loadEachBox[i] = document.querySelectorAll(eachBoxClass)
+
+// calling the title from HTML document
+let TitleEL = document.querySelector('title')
+function ChangeTitles(titleText) {
+
+    function resetTheTitle() {
+        TitleEL.innerHTML = 'Sticky Notes'
     }
+
+    function myTimeOutFunction() {
+        setTimeout(resetTheTitle, 2000)
+    }
+    myTimeOutFunction()
+    resetTheTitle()
+    TitleEL.innerHTML = titleText
 }
+
 // remove note function
 function removeNote(removeBtnName, removeNoteCategory, deleteBtnClassName, eachNoteName) {
     // updates both btns and notes
     removeBtnName = document.querySelectorAll(deleteBtnClassName)
     removeNoteCategory = document.querySelectorAll(eachNoteName)
     // loops throw the nodelist
-    for (let i = 0; i < removeBtnName.length; i++) {
-        removeBtnName[i].addEventListener("dblclick", () => {
-            removeNoteCategory[i].remove()
+    removeBtnName.forEach(item => {
+        item.addEventListener("dblclick", () => {
+            removeNoteCategory.forEach(item => {
+                item.remove()
+            })
+            ChangeTitles('---------- Note Removed! ----------')
         })
-    }
-
+    })
 }
-
 
 // save notes to their own array and localStorage key
 function saveNoteToLocalStorage(saveBtName, NoteCategory, saveBtnClassName, wholeListName, arrayName, keyName) {
     // updates both btns and notes
-
     saveBtName = document.querySelectorAll(saveBtnClassName)
     NoteCategory = document.querySelectorAll(wholeListName)
     // loops throw the nodelist
-    for (let j = 0; j < saveBtName.length; j++) {
-        saveBtName[j].addEventListener("click", () => {
-
-            arrayName += NoteCategory[j].innerHTML
+    saveBtName.forEach(item => {
+        item.addEventListener("click", () => {
+            NoteCategory.forEach(item => {
+                arrayName += item.innerHTML
+            })
+            ChangeTitles('---------- Note Saved! ----------')
             localStorage.setItem(keyName, JSON.stringify(arrayName))
         })
-    }
+    })
+
 }
 
 //loads from localStorage to InnerHtml
@@ -68,24 +81,19 @@ function colorChange() {
 
 // all variables used in todo list
 // todo list whole note box
-let toDoNoteBoxEl = document.querySelector(".todo-list-note-box")
-
-// all todo notes
-let eachTodoNote = document.querySelectorAll(".each-todo-list-note-box")
-
-// todo save btn
-let ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn")
-
-// todo delete note btn
-let ToDoDeleteBtnEl = document.querySelectorAll(".todo-delete-note-btn")
-
-// todo add note btn
-let addTodoBtnEl = document.querySelector("#add-todo-note-btn")
-// array that contains all todolist elements
-let ToDoListArray = []
-// gets localStorageItems
-let ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
-
+let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
+    // all todo notes
+    eachTodoNote = document.querySelectorAll(".each-todo-list-note-box"),
+    // todo save btn
+    ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn"),
+    // todo delete note btn
+    ToDoDeleteBtnEl = document.querySelectorAll(".todo-delete-note-btn"),
+    // todo add note btn
+    addTodoBtnEl = document.querySelector("#add-todo-note-btn"),
+    // array that contains all todolist elements
+    ToDoListArray = [],
+    // gets localStorageItems
+    ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
 
 
 // adds new todo note
@@ -94,6 +102,7 @@ addTodoBtnEl.addEventListener("click", () => {
     addNote(toDoNoteBoxEl, 'each-todo-list-note-box', 'todo-delete-note-btn')
     removeNote(ToDoDeleteBtnEl, eachTodoNote, '.todo-delete-note-btn', '.each-todo-list-note-box')
     saveNoteToLocalStorage(ToDosaveBtn, toDoNoteBoxEl, ".todo-save-note-btn", ".todo-list-note-box", ToDoListArray, "toDoKey")
+    ChangeTitles('---------- Note Added! ----------')
 })
 
 loadFromLocalStorageToInnerHtml(ToDoLocalStorage, toDoNoteBoxEl)
@@ -105,32 +114,27 @@ loadFromLocalStorageToInnerHtml(ToDoLocalStorage, toDoNoteBoxEl)
 // all variables used in Upcomming list
 
 // upcomming list whole note box
-let upcomingNoteBoxEl = document.querySelector(".upcoming-list-note-box")
+let upcomingNoteBoxEl = document.querySelector(".upcoming-list-note-box"),
+    // all upcomming notes
+    eachUpComingNote = document.querySelectorAll(".each-upcoming-list-note-box"),
+    // upcoming save note btn
+    upcomingSaveBtn = document.querySelectorAll(".upcoming-save-note-btn"),
+    //upcoming delete note btn
+    upcomingDeleteBtn = document.querySelectorAll(".upcoming-delete-note-btn"),
+    // add upcomming note btn
+    addUpcommingBtnEL = document.querySelector("#add-upcomming-note-btn"),
+    // save upcoming array
+    upcomingArray = [],
+    // upcoming LocalStorage
+    upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey'))
 
-// all upcomming notes
-let eachUpComingNote = document.querySelectorAll(".each-upcoming-list-note-box")
-
-// upcoming save note btn
-let upcomingSaveBtn = document.querySelectorAll(".upcoming-save-note-btn")
-
-//upcoming delete note btn
-let upcomingDeleteBtn = document.querySelectorAll(".upcoming-delete-note-btn")
-
-// add upcomming note btn
-let addUpcommingBtnEL = document.querySelector("#add-upcomming-note-btn")
-
-let upcomingArray = []
-let upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey'))
-// if(upcomingLocalStorage){
-//     upcomingNoteBoxEl.innerHTML += upcomingLocalStorage
-// }
-loaditem(upcomingNoteBoxEl, eachUpComingNote, ".upcoming-list-note-box", ".each-upcoming-list-note-box")
 //adds new upcomming note
 addUpcommingBtnEL.addEventListener("click", () => {
     colorChange()
     addNote(upcomingNoteBoxEl, 'each-upcoming-list-note-box', 'upcoming-delete-note-btn')
     removeNote(upcomingDeleteBtn, eachUpComingNote, '.upcoming-delete-note-btn', '.each-upcoming-list-note-box')
     saveNoteToLocalStorage(upcomingSaveBtn, upcomingNoteBoxEl, ".upcoming-save-note-btn", ".upcoming-list-note-box", upcomingArray, 'upcomingKey')
+    ChangeTitles('Note Added !')
 })
 
 loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
@@ -140,7 +144,7 @@ loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
 
 // temporary localStorage clear
 const LocalStorageClear = document.querySelector("#ClearLocalStorage")
-LocalStorageClear.addEventListener("dblclick", () =>{
+LocalStorageClear.addEventListener("dblclick", () => {
     localStorage.clear()
 })
 
