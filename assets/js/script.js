@@ -136,7 +136,7 @@ addUpcommingBtnEL.addEventListener("click", () => {
     addNote(upcomingNoteBoxEl, 'each-upcoming-list-note-box', 'upcoming-delete-note-btn')
     removeNote(upcomingDeleteBtn, eachUpComingNote, '.upcoming-delete-note-btn', '.each-upcoming-list-note-box')
     saveNoteToLocalStorage(upcomingSaveBtn, upcomingNoteBoxEl, ".upcoming-save-note-btn", ".upcoming-list-note-box", upcomingArray, 'upcomingKey')
-    ChangeTitles('Note Added !')
+    ChangeTitles('---------- Note Added! ----------')
 })
 
 loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
