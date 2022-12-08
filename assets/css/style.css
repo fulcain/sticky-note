@@ -48,6 +48,11 @@ body {
 .bx-save:hover {
     color: blue;
 }
+/* bx-show */
+#todo-show-btn:hover,
+#upcoming-show-btn:hover{
+    color: rgb(174, 174, 128);
+}
 
 /* icon styles END */
 /* note attributes START */
@@ -71,8 +76,9 @@ body {
     gap: 70px;
 
     padding-top: 50px;
+    position: relative;
+    visibility: hidden;
 }
-
 
 
 /* each note box styles START*/
@@ -146,9 +152,6 @@ body {
     border-radius: 100%;
 }
 
-.add-new-note i:first-of-type:hover {
-    color: rgb(29, 29, 29);
-}
 
 /* empty text START */
 .empty-text {
@@ -188,16 +191,18 @@ body {
         gap: 30px;
     }
 }
+
 /* for 768px */
 @media only screen and (max-width:768px) {
     .container {
         width: 650px;
     }
-    
+
     .whole-note-box-styles {
         gap: 30px;
     }
 }
+
 /* for 425px */
 @media only screen and (max-width:425px) {
     .container {
@@ -208,12 +213,13 @@ body {
         min-width: 200px;
         max-width: 200px;
         min-height: 200px;
-        
-        
+
+
     }
+
     .add-new-note {
-        
-        margin:20px 0 0 0 ;
+
+        margin: 20px 0 0 0;
         display: flex;
         align-items: center;
         vertical-align: middle;
@@ -222,17 +228,20 @@ body {
         color: black;
         border-radius: 50px;
     }
-    .header img{
+
+    .header img {
         width: 30px;
     }
+
     .whole-note-box-styles {
         flex-direction: column;
         align-items: center;
         padding: 30px;
         gap: 30px;
-        
+
     }
 }
+
 /* for 320px */
 @media only screen and (max-width:320px) {
     .container {
@@ -247,22 +256,24 @@ body {
         max-width: 180px;
         min-height: 180px;
 
-    
-    }
-    .add-new-note {
-        margin:30px 0 0 0 ;
 
     }
-    .header{
+
+    .add-new-note {
+        margin: 30px 0 0 0;
+
+    }
+
+    .header {
 
         gap: 10px;
     }
-    .header img{
+
+    .header img {
         width: 20px;
     }
-    .header h3{
+
+    .header h3 {
         font-size: 12px;
     }
 }
-
-
