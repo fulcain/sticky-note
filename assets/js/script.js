@@ -1,15 +1,16 @@
 
 // ----------------------------------------- general START -----------------------------------------
 // add new note function
-function addNote(boxEl, classes, deleteBtnName) {
+function addNote(boxEl, classes, deleteBtnName,eachHourElementId) {
     boxEl.innerHTML += `
     <div class="each-note-box-styles ${classes}" style="background-color:${colorChangeArr[colorChangeLoop]};">
         <p class="editing" contenteditable></p>
         <div class="note-attributes">
         <i class='bx bx-trash icon-styles ${deleteBtnName}'></i>
+        <p id="${eachHourElementId}"></p>
         </div>
         </div>`
-
+        addHour(upcomingHour)
 }
 
 // calling the title from HTML document
@@ -78,19 +79,25 @@ function colorChange() {
     colorChangeLoop = Math.floor(Math.random() * 8)
 }
 
-// show / hide list items
-function toggleEl(toggleElement, toggleBtn,hintEl) {
-    toggleBtn.addEventListener("click", () => {
-        if (toggleElement.style.visibility == "hidden") {
-            toggleElement.style.visibility = "visible"
-            toggleBtn.style.color = 'red'
-            hintEl.innerHTML = 'Status: Visible'
-        } else {
-            toggleElement.style.visibility = "hidden"
-            hintEl.innerHTML = 'Status: Hidden'
-            toggleBtn.style.color = 'rgb(174, 174, 128)'
-        }
-    })
+// // show / hide list items
+// function toggleEl(toggleElement, toggleBtn, hintEl) {
+//     toggleBtn.addEventListener("click", () => {
+//         if (toggleElement.style.visibility == "hidden") {
+//             toggleElement.style.visibility = "visible"
+//             toggleBtn.style.color = 'red'
+//             hintEl.innerHTML = 'Status: Visible'
+//         } else {
+//             toggleElement.style.visibility = "hidden"
+//             hintEl.innerHTML = 'Status: Hidden'
+//             toggleBtn.style.color = 'rgb(174, 174, 128)'
+//         }
+//     })
+// }
+
+// gets hour and put it in an element
+let hourEl = new Date()
+function addHour() {
+    todoHour.innerHTML = hourEl.getHours() + ":" + hourEl.getMinutes()
 }
 
 
@@ -114,22 +121,23 @@ let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
     ToDoListArray = [],
     // gets localStorageItems
     ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey')),
-    // todo toggle icon
-    toDoToggleEl = document.querySelector('#todo-show-btn'),
-    // todo hint btn
-    todoHint = document.querySelector('#todo-hint')
+    // to do hour
+    todoHour = document.querySelector('#todo-hour')
 
 
 
 // adds new todo note
 addTodoBtnEl.addEventListener("click", () => {
     colorChange()
-    addNote(toDoNoteBoxEl, 'each-todo-list-note-box', 'todo-delete-note-btn')
+    addNote(toDoNoteBoxEl, 'each-todo-list-note-box', 'todo-delete-note-btn',todoHour)
     removeNote(ToDoDeleteBtnEl, eachTodoNote, '.todo-delete-note-btn', '.each-todo-list-note-box')
     saveNoteToLocalStorage(ToDosaveBtn, toDoNoteBoxEl, ".todo-save-note-btn", ".todo-list-note-box", ToDoListArray, "toDoKey")
     ChangeTitles('---------- Note Added! ----------')
+    addHour()
+    todoHour.innerHTML = hourEl.getHours() + ":" + hourEl.getMinutes()
+
 })
-toggleEl(toDoNoteBoxEl, toDoToggleEl,todoHint);
+toggleEl(toDoNoteBoxEl, toDoToggleEl, todoHint);
 loadFromLocalStorageToInnerHtml(ToDoLocalStorage, toDoNoteBoxEl)
 
 // ----------------------------------------- todo list END -----------------------------------------
@@ -152,10 +160,8 @@ let upcomingNoteBoxEl = document.querySelector(".upcoming-list-note-box"),
     upcomingArray = [],
     // upcoming LocalStorage
     upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey')),
-    // toggle icon
-    upcomingToggleEl = document.querySelector('#upcoming-show-btn'),
-    // upcoming hint
-    upcomingHint = document.querySelector('#upcoming-hint')
+    // upcoming hour
+    upcomingHour = document.querySelector('#upcoming-hour')
 
 
 //adds new upcomming note
@@ -166,7 +172,7 @@ addUpcommingBtnEL.addEventListener("click", () => {
     saveNoteToLocalStorage(upcomingSaveBtn, upcomingNoteBoxEl, ".upcoming-save-note-btn", ".upcoming-list-note-box", upcomingArray, 'upcomingKey')
     ChangeTitles('---------- Note Added! ----------')
 })
-toggleEl(upcomingNoteBoxEl, upcomingToggleEl,upcomingHint);
+toggleEl(upcomingNoteBoxEl, upcomingToggleEl, upcomingHint);
 loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
 // ----------------------------------------- Upcomming list END -----------------------------------------
 
@@ -177,3 +183,4 @@ const LocalStorageClear = document.querySelector("#ClearLocalStorage")
 LocalStorageClear.addEventListener("dblclick", () => {
     localStorage.clear()
 })
+
