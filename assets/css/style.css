@@ -37,10 +37,10 @@ body {
     transform: scale(.9);
 }
 
-.bx-trash {
-    font-size: 50px;
+#add-todo-note-btn:hover,
+#add-upcomming-note-btn:hover{
+    color: green;
 }
-
 .bx-trash:hover {
     color: red;
 }
@@ -48,9 +48,10 @@ body {
 .bx-save:hover {
     color: blue;
 }
+
 /* bx-show */
 #todo-show-btn:hover,
-#upcoming-show-btn:hover{
+#upcoming-show-btn:hover {
     color: rgb(174, 174, 128);
 }
 
@@ -91,7 +92,6 @@ body {
     min-width: 220px;
     max-width: 220px;
     min-height: 200px;
-    /* border: 3px solid rgb(63, 63, 63); */
     border-radius: 30px 5px 30px 5px;
     padding: 15px;
     box-shadow: 1px 1px 30px rgb(63, 63, 63);
@@ -132,14 +132,13 @@ body {
     vertical-align: middle;
     gap: 10px;
     width: max-content;
-    color: black;
+    color: rgb(34, 34, 34);
     border-radius: 50px;
 
 }
 
 .add-new-note h2 {
     position: relative;
-
 }
 
 .add-new-note h2::before {
@@ -153,31 +152,18 @@ body {
 }
 
 
-/* empty text START */
-.empty-text {
-    min-width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* empty text END */
 /* add new note END */
 
 
 #ClearLocalStorage {
     position: absolute;
-    top: 5px;
+    top: 10px;
     color: red;
     font-size: 9px;
     cursor: pointer;
     transition-duration: .2s;
 }
 
-#ClearLocalStorage:hover {
-    transform: scale(1.2);
-
-}
 
 
 /* Media query */

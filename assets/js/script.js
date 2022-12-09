@@ -1,19 +1,19 @@
-
 // ----------------------------------------- general START -----------------------------------------
 // add new note function
-function addNote(boxEl, classes, deleteBtnName,eachHourElementId) {
+
+function addNote(boxEl, classes, deleteBtnName, eachHourElementId) {
     boxEl.innerHTML += `
     <div class="each-note-box-styles ${classes}" style="background-color:${colorChangeArr[colorChangeLoop]};">
         <p class="editing" contenteditable></p>
         <div class="note-attributes">
         <i class='bx bx-trash icon-styles ${deleteBtnName}'></i>
-        <p id="${eachHourElementId}"></p>
         </div>
         </div>`
-        addHour(upcomingHour)
+
 }
 
 // calling the title from HTML document
+
 let TitleEL = document.querySelector('title')
 function ChangeTitles(titleText) {
 
@@ -30,6 +30,7 @@ function ChangeTitles(titleText) {
 }
 
 // remove note function
+
 function removeNote(removeBtnName, removeNoteCategory, deleteBtnClassName, eachNoteName) {
     // updates both btns and notes
     removeBtnName = document.querySelectorAll(deleteBtnClassName)
@@ -44,10 +45,9 @@ function removeNote(removeBtnName, removeNoteCategory, deleteBtnClassName, eachN
 
     }
 }
-function loadItems() {
-    ToDoDeleteBtnEl = document.querySelectorAll('.todo-delete-note-btn')
-}
+
 // save notes to their own array and localStorage key
+
 function saveNoteToLocalStorage(saveBtName, NoteCategory, saveBtnClassName, wholeListName, arrayName, keyName) {
     // updates both btns and notes
     saveBtName = document.querySelectorAll(saveBtnClassName)
@@ -65,14 +65,16 @@ function saveNoteToLocalStorage(saveBtName, NoteCategory, saveBtnClassName, whol
 
 }
 
-
 //loads from localStorage to InnerHtml
+
 function loadFromLocalStorageToInnerHtml(localStorageName, noteBoxElement, noteBoxClassName) {
     if (localStorageName) {
         noteBoxElement.innerHTML += localStorageName
     }
 }
+
 // takes random color from the array
+
 let colorChangeArr = ['#ff7eb9', '#ff65a3', '#7afcff', '#feff9c', '#fff740', '#2B3A55', '#CE7777', '#E8C4C4']
 let colorChangeLoop = 0
 function colorChange() {
@@ -95,18 +97,19 @@ function colorChange() {
 // }
 
 // gets hour and put it in an element
+
 let hourEl = new Date()
+let currentTime = ''
 function addHour() {
-    todoHour.innerHTML = hourEl.getHours() + ":" + hourEl.getMinutes()
+    currentTime = hourEl.getHours() + ":" + hourEl.getMinutes()
 }
-
-
 
 
 // ----------------------------------------- general END -----------------------------------------
 
 // ----------------------------------------- todo list START -----------------------------------------
 // all variables used in todo list
+
 // todo list whole note box
 let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
     // all todo notes
@@ -121,23 +124,25 @@ let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
     ToDoListArray = [],
     // gets localStorageItems
     ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey')),
+    // todo toggle icon
+    toDoToggleEl = document.querySelector('#todo-show-btn'),
+    // todo hint btn
+    todoHint = document.querySelector('#todo-hint'),
     // to do hour
     todoHour = document.querySelector('#todo-hour')
 
-
-
 // adds new todo note
+
 addTodoBtnEl.addEventListener("click", () => {
     colorChange()
-    addNote(toDoNoteBoxEl, 'each-todo-list-note-box', 'todo-delete-note-btn',todoHour)
+    addNote(toDoNoteBoxEl, 'each-todo-list-note-box', 'todo-delete-note-btn', todoHour)
     removeNote(ToDoDeleteBtnEl, eachTodoNote, '.todo-delete-note-btn', '.each-todo-list-note-box')
     saveNoteToLocalStorage(ToDosaveBtn, toDoNoteBoxEl, ".todo-save-note-btn", ".todo-list-note-box", ToDoListArray, "toDoKey")
     ChangeTitles('---------- Note Added! ----------')
-    addHour()
-    todoHour.innerHTML = hourEl.getHours() + ":" + hourEl.getMinutes()
-
+    // addHour()
 })
-toggleEl(toDoNoteBoxEl, toDoToggleEl, todoHint);
+
+// toggleEl(toDoNoteBoxEl, toDoToggleEl, todoHint);
 loadFromLocalStorageToInnerHtml(ToDoLocalStorage, toDoNoteBoxEl)
 
 // ----------------------------------------- todo list END -----------------------------------------
@@ -160,27 +165,32 @@ let upcomingNoteBoxEl = document.querySelector(".upcoming-list-note-box"),
     upcomingArray = [],
     // upcoming LocalStorage
     upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey')),
+    // toggle icon
+    upcomingToggleEl = document.querySelector('#upcoming-show-btn'),
+    // upcoming hint
+    upcomingHint = document.querySelector('#upcoming-hint'),
     // upcoming hour
     upcomingHour = document.querySelector('#upcoming-hour')
 
-
 //adds new upcomming note
+
 addUpcommingBtnEL.addEventListener("click", () => {
     colorChange()
     addNote(upcomingNoteBoxEl, 'each-upcoming-list-note-box', 'upcoming-delete-note-btn')
     removeNote(upcomingDeleteBtn, eachUpComingNote, '.upcoming-delete-note-btn', '.each-upcoming-list-note-box')
     saveNoteToLocalStorage(upcomingSaveBtn, upcomingNoteBoxEl, ".upcoming-save-note-btn", ".upcoming-list-note-box", upcomingArray, 'upcomingKey')
     ChangeTitles('---------- Note Added! ----------')
+    // addHour()
 })
-toggleEl(upcomingNoteBoxEl, upcomingToggleEl, upcomingHint);
+// toggleEl(upcomingNoteBoxEl, upcomingToggleEl, upcomingHint);
 loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
 // ----------------------------------------- Upcomming list END -----------------------------------------
 
 
 
 // temporary localStorage clear
+
 const LocalStorageClear = document.querySelector("#ClearLocalStorage")
 LocalStorageClear.addEventListener("dblclick", () => {
     localStorage.clear()
 })
-
