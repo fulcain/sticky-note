@@ -38,9 +38,10 @@ body {
 }
 
 #add-todo-note-btn:hover,
-#add-upcomming-note-btn:hover{
+#add-upcomming-note-btn:hover {
     color: green;
 }
+
 .bx-trash:hover {
     color: red;
 }
@@ -125,7 +126,6 @@ body {
 /* header END */
 /* add new note START */
 .add-new-note {
-
     margin: 20px 0 0 70px;
     display: flex;
     align-items: center;
