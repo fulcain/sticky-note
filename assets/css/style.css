@@ -60,6 +60,7 @@ body {
 /* note attributes START */
 .note-attributes {
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     gap: 10px;
 }
@@ -68,6 +69,14 @@ body {
     cursor: pointer;
     font-size: 20px;
 }
+/* added hour */
+.added-hour {
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 
 /* note attributes END */
 /* whole note box styles START */
@@ -163,7 +172,6 @@ body {
     cursor: pointer;
     transition-duration: .2s;
 }
-
 
 
 /* Media query */
