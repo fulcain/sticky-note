@@ -139,7 +139,7 @@ addTodoBtnEl.addEventListener("click", () => {
     removeNote(ToDoDeleteBtnEl, eachTodoNote, '.todo-delete-note-btn', '.each-todo-list-note-box')
     saveNoteToLocalStorage(ToDosaveBtn, toDoNoteBoxEl, ".todo-save-note-btn", ".todo-list-note-box", ToDoListArray, "toDoKey")
     ChangeTitles('---------- Note Added! ----------')
-    // addHour()
+
 })
 
 // toggleEl(toDoNoteBoxEl, toDoToggleEl, todoHint);
@@ -180,12 +180,19 @@ addUpcommingBtnEL.addEventListener("click", () => {
     removeNote(upcomingDeleteBtn, eachUpComingNote, '.upcoming-delete-note-btn', '.each-upcoming-list-note-box')
     saveNoteToLocalStorage(upcomingSaveBtn, upcomingNoteBoxEl, ".upcoming-save-note-btn", ".upcoming-list-note-box", upcomingArray, 'upcomingKey')
     ChangeTitles('---------- Note Added! ----------')
-    // addHour()
 })
 // toggleEl(upcomingNoteBoxEl, upcomingToggleEl, upcomingHint);
 loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
 // ----------------------------------------- Upcomming list END -----------------------------------------
 
+// loads functions on page reload
+function loadItems() {
+    removeNote(upcomingDeleteBtn, eachUpComingNote, '.upcoming-delete-note-btn', '.each-upcoming-list-note-box')
+    saveNoteToLocalStorage(upcomingSaveBtn, upcomingNoteBoxEl, ".upcoming-save-note-btn", ".upcoming-list-note-box", upcomingArray, 'upcomingKey')
+    removeNote(ToDoDeleteBtnEl, eachTodoNote, '.todo-delete-note-btn', '.each-todo-list-note-box')
+    saveNoteToLocalStorage(ToDosaveBtn, toDoNoteBoxEl, ".todo-save-note-btn", ".todo-list-note-box", ToDoListArray, "toDoKey")
+}
+loadItems()
 
 
 // temporary localStorage clear
