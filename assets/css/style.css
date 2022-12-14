@@ -50,11 +50,6 @@ body {
     color: blue;
 }
 
-/* bx-show */
-#todo-show-btn:hover,
-#upcoming-show-btn:hover {
-    color: rgb(174, 174, 128);
-}
 
 /* icon styles END */
 /* note attributes START */

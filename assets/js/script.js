@@ -90,22 +90,6 @@ function colorChange() {
     colorChangeLoop = Math.floor(Math.random() * 8)
 }
 
-// // show / hide list items
-// function toggleEl(toggleElement, toggleBtn, hintEl) {
-//     toggleBtn.addEventListener("click", () => {
-//         if (toggleElement.style.visibility == "hidden") {
-//             toggleElement.style.visibility = "visible"
-//             toggleBtn.style.color = 'red'
-//             hintEl.innerHTML = 'Status: Visible'
-//         } else {
-//             toggleElement.style.visibility = "hidden"
-//             hintEl.innerHTML = 'Status: Hidden'
-//             toggleBtn.style.color = 'rgb(174, 174, 128)'
-//         }
-//     })
-// }
-
-
 
 // ----------------------------------------- general END -----------------------------------------
 
@@ -125,11 +109,8 @@ let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
     // array that contains all todolist elements
     ToDoListArray = [],
     // gets localStorageItems
-    ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey')),
-    // todo toggle icon
-    toDoToggleEl = document.querySelector('#todo-show-btn'),
-    // todo hint btn
-    todoHint = document.querySelector('#todo-hint')
+    ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
+
 
 // adds new todo note
 
@@ -143,7 +124,6 @@ addTodoBtnEl.addEventListener("click", () => {
 
 })
 
-// toggleEl(toDoNoteBoxEl, toDoToggleEl, todoHint);
 loadFromLocalStorageToInnerHtml(ToDoLocalStorage, toDoNoteBoxEl)
 
 // ----------------------------------------- todo list END -----------------------------------------
@@ -165,11 +145,8 @@ let upcomingNoteBoxEl = document.querySelector(".upcoming-list-note-box"),
     // save upcoming array
     upcomingArray = [],
     // upcoming LocalStorage
-    upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey')),
-    // toggle icon
-    upcomingToggleEl = document.querySelector('#upcoming-show-btn'),
-    // upcoming hint
-    upcomingHint = document.querySelector('#upcoming-hint')
+    upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey'))
+
 
 
 //adds new upcomming note
@@ -182,7 +159,7 @@ addUpcommingBtnEL.addEventListener("click", () => {
     addHour()
     ChangeTitles('---------- Note Added! ----------')
 })
-// toggleEl(upcomingNoteBoxEl, upcomingToggleEl, upcomingHint);
+
 loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
 // ----------------------------------------- Upcomming list END -----------------------------------------
 
