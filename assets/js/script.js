@@ -128,41 +128,6 @@ loadFromLocalStorageToInnerHtml(ToDoLocalStorage, toDoNoteBoxEl)
 
 // ----------------------------------------- todo list END -----------------------------------------
 
-// ----------------------------------------- Upcomming list START -----------------------------------------
-
-// all variables used in Upcomming list
-
-// upcomming list whole note box
-let upcomingNoteBoxEl = document.querySelector(".upcoming-list-note-box"),
-    // all upcomming notes
-    eachUpComingNote = document.querySelectorAll(".each-upcoming-list-note-box"),
-    // upcoming save note btn
-    upcomingSaveBtn = document.querySelectorAll(".upcoming-save-note-btn"),
-    //upcoming delete note btn
-    upcomingDeleteBtn = document.querySelectorAll(".upcoming-delete-note-btn"),
-    // add upcomming note btn
-    addUpcommingBtnEL = document.querySelector("#add-upcomming-note-btn"),
-    // save upcoming array
-    upcomingArray = [],
-    // upcoming LocalStorage
-    upcomingLocalStorage = JSON.parse(localStorage.getItem('upcomingKey'))
-
-
-
-//adds new upcomming note
-
-addUpcommingBtnEL.addEventListener("click", () => {
-    colorChange()
-    addNote(upcomingNoteBoxEl, 'each-upcoming-list-note-box', 'upcoming-delete-note-btn')
-    removeNote(upcomingDeleteBtn, eachUpComingNote, '.upcoming-delete-note-btn', '.each-upcoming-list-note-box')
-    saveNoteToLocalStorage(upcomingSaveBtn, upcomingNoteBoxEl, ".upcoming-save-note-btn", ".upcoming-list-note-box", upcomingArray, 'upcomingKey')
-    addHour()
-    ChangeTitles('---------- Note Added! ----------')
-})
-
-loadFromLocalStorageToInnerHtml(upcomingLocalStorage, upcomingNoteBoxEl)
-// ----------------------------------------- Upcomming list END -----------------------------------------
-
 // loads functions on page reload
 function loadItems() {
     removeNote(upcomingDeleteBtn, eachUpComingNote, '.upcoming-delete-note-btn', '.each-upcoming-list-note-box')
