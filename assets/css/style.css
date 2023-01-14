@@ -52,22 +52,38 @@ body {
 
 
 /* icon styles END */
+/* General Changes END*/
+
 /* note attributes START */
 .note-attributes {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 10px;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(125, 116, 116);
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    vertical-align: middle;
 }
 
 .note-attributes i {
     cursor: pointer;
     font-size: 20px;
 }
+/* button box */
+.button-box{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+.button-box i{
+    padding-right:10px ;
+}
 /* added hour */
-.added-hour {
-    background-color: white;
-    border: 1px solid black;
+.added-hour-and-date {
+    font-size: 13px;
     padding: 5px;
     border-radius: 10px;
 }
@@ -82,9 +98,7 @@ body {
     gap: 70px;
 
     padding-top: 50px;
-    position: relative;
-
-    /* visibility: hidden; */
+    position: relative;    
 }
 
 /* each note box styles START*/
@@ -100,12 +114,14 @@ body {
     border-radius: 30px 5px 30px 5px;
     padding: 15px;
     box-shadow: 1px 1px 30px rgb(63, 63, 63);
+    border: 2px solid black;
+
 
 }
 
 /* each note box styles END*/
 /* whole note box styles END */
-/* General Changes END*/
+
 /* header START */
 .header {
     margin: 25px 70px 0 70px;
