@@ -199,10 +199,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // gets localStorageItems
     ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
 })
-
-// temporary localStorage clear
-
-const LocalStorageClear = document.querySelector("#ClearLocalStorage")
-LocalStorageClear.addEventListener("dblclick", () => {
-    localStorage.clear()
-})
