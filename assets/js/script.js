@@ -181,6 +181,15 @@ addTodoBtnEl.addEventListener("click", () => {
 })
 loadFromLocalStorageToInnerHtml()
 
+document.addEventListener("keydown", (e) =>{
+    if(e.key === "="){
+        for (let i = 0; i < ToDosaveBtn.length; i++) {
+                ToDoListArray = ToDosaveBtn[i].parentElement.parentElement.parentElement.parentElement.innerHTML
+                ChangeTitles('---------- Note Saved! ----------')
+                localStorage.setItem("toDoKey", JSON.stringify(ToDoListArray))
+        }
+    }
+})
 // ----------------------------------------- todo list END -----------------------------------------
 
 // loads functions on page reload
