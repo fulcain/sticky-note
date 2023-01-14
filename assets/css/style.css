@@ -82,7 +82,7 @@ body {
     padding-right:10px ;
 }
 /* added hour */
-.added-hour-and-date {
+each-note-box-styles {
     font-size: 13px;
     padding: 5px;
     border-radius: 10px;
@@ -95,7 +95,7 @@ body {
     padding: 70px;
     display: flex;
     flex-wrap: wrap;
-    gap: 70px;
+    gap: 30px;
 
     padding-top: 50px;
     position: relative;    
@@ -108,9 +108,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
 
-    min-width: 220px;
-    max-width: 220px;
-    min-height: 200px;
+    width: 250px;
+    height: 250px;
     border-radius: 30px 5px 30px 5px;
     padding: 15px;
     box-shadow: 1px 1px 30px rgb(63, 63, 63);
