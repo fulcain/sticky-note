@@ -1,7 +1,25 @@
-// ----------------------------------------- general START -----------------------------------------
+// ----------------------------------------- variables START -----------------------------------------
+
+// todo list whole note box
+let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
+    // all todo notes
+    eachTodoNote = document.querySelectorAll(".each-todo-list-note-box"),
+    // todo save btn
+    ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn"),
+    // todo delete note btn
+    ToDoDeleteBtnEl = document.querySelectorAll(".todo-delete-note-btn"),
+    // todo add note btn
+    addTodoBtnEl = document.querySelector("#add-todo-note-btn"),
+    // array that contains all todolist elements
+    ToDoListArray = [],
+    // gets localStorageItems
+    ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
+
+// ----------------------------------------- variables END -----------------------------------------
+
+// ----------------------------------------- functions START -----------------------------------------
 
 // add new note function
-
 function addNote() {
     // creates the noteBox div
     let eachNoteBox = document.createElement('div')
@@ -26,8 +44,6 @@ function addNote() {
     // adds the noteAttribute div to noteBox
     eachNoteBox.appendChild(noteAttributeDiv)
 
-
-
     // creates hourElement
     let hourElement = document.createElement('p')
     // adds classes to the hourElement
@@ -41,8 +57,8 @@ function addNote() {
 
     //creates horizantal line
     let hrline = document.createElement('hr')
-    hrline.setAttribute("style",'border: 1px solid rgb(0, 0, 0);')
-    hrline.setAttribute("width",'100%')
+    hrline.setAttribute("style", 'border: 1px solid rgb(0, 0, 0);')
+    hrline.setAttribute("width", '100%')
     noteAttributeDiv.appendChild(hrline)
 
     // creates btns box el
@@ -61,8 +77,6 @@ function addNote() {
     trashEl.classList.add("bx", "bx-trash", "icon-styles", 'todo-delete-note-btn')
     // adds the deleteBtn(i)i element to the noteAttributeDiv
     btnBox.appendChild(trashEl)
-
-
 
     // adds the noteBox to the whole noteBox
     toDoNoteBoxEl.appendChild(eachNoteBox)
@@ -106,9 +120,9 @@ function removeNote() {
 
 }
 
-// save notes to their own array and localStorage key
+// save notes function
 
-function saveNoteToLocalStorage() {
+function saveNote() {
     // updates both btns and notes
     ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn")
     eachTodoNote = document.querySelectorAll(".todo-list-note-box")
@@ -123,20 +137,19 @@ function saveNoteToLocalStorage() {
 
 
 }
-// gets hour and put it in a variable
-let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let hourEl = new Date()
+// gets hour function
+
 let currentTime = ''
 function addHour() {
+    let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    let hourEl = new Date()
     currentTime = `${hourEl.getHours()}:${hourEl.getMinutes()} / ${months[hourEl.getMonth()]} ${hourEl.getDay()},${hourEl.getFullYear()}`
 }
 
-//loads from localStorage to InnerHtml
+//loads from localStorage 
 
-function loadFromLocalStorageToInnerHtml() {
-    if (ToDoLocalStorage) {
-        toDoNoteBoxEl.innerHTML += ToDoLocalStorage
-    }
+function loadFromLocalStorage() {
+
 }
 
 // takes random color from the array
@@ -148,45 +161,31 @@ function colorChange() {
 }
 
 
-// ----------------------------------------- general END -----------------------------------------
+// ----------------------------------------- functions END -----------------------------------------
 
 // ----------------------------------------- todo list START -----------------------------------------
-// all variables used in todo list
-
-// todo list whole note box
-let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
-    // all todo notes
-    eachTodoNote = document.querySelectorAll(".each-todo-list-note-box"),
-    // todo save btn
-    ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn"),
-    // todo delete note btn
-    ToDoDeleteBtnEl = document.querySelectorAll(".todo-delete-note-btn"),
-    // todo add note btn
-    addTodoBtnEl = document.querySelector("#add-todo-note-btn"),
-    // array that contains all todolist elements
-    ToDoListArray = [],
-    // gets localStorageItems
-    ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
-
 
 // adds new todo note
 addTodoBtnEl.addEventListener("click", () => {
     colorChange()
     addNote()
     removeNote()
-    saveNoteToLocalStorage()
+    saveNote()
     addHour()
     ChangeTitles('---------- Note Added! ----------')
 
 })
-loadFromLocalStorageToInnerHtml()
 
-document.addEventListener("keydown", (e) =>{
-    if(e.key === "="){
+// loads from localStorage
+if (ToDoLocalStorage) {
+    toDoNoteBoxEl.innerHTML += ToDoLocalStorage
+}
+document.addEventListener("keydown", (e) => {
+    if (e.key === "=") {
         for (let i = 0; i < ToDosaveBtn.length; i++) {
-                ToDoListArray = ToDosaveBtn[i].parentElement.parentElement.parentElement.parentElement.innerHTML
-                ChangeTitles('---------- Note Saved! ----------')
-                localStorage.setItem("toDoKey", JSON.stringify(ToDoListArray))
+            ToDoListArray = ToDosaveBtn[i].parentElement.parentElement.parentElement.parentElement.innerHTML
+            ChangeTitles('---------- Note Saved! ----------')
+            localStorage.setItem("toDoKey", JSON.stringify(ToDoListArray))
         }
     }
 })
@@ -196,7 +195,7 @@ document.addEventListener("keydown", (e) =>{
 
 document.addEventListener('DOMContentLoaded', () => {
     removeNote()
-    saveNoteToLocalStorage()
+    saveNote()
     addHour()
     eachTodoNote = document.querySelectorAll(".each-todo-list-note-box")
     // todo save btn
