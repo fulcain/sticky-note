@@ -26,7 +26,7 @@ function addNote() {
     // adds class names to the noteBox div
     eachNoteBox.classList.add('each-note-box-styles', 'each-todo-list-note-box')
     // adds an attribute to the noteBox div
-    eachNoteBox.setAttribute('style', `background:${colorChangeArr[colorChangeLoop]};`)
+    eachNoteBox.setAttribute('style', `background:${colorValue};`)
 
     // creates a p element
     let pElment = document.createElement('p')
@@ -154,10 +154,9 @@ function loadFromLocalStorage() {
 
 // takes random color from the array
 
-let colorChangeArr = ['#ff7eb9', '#ff65a3', '#7afcff', '#feff9c', '#fff740', '#2B3A55', '#CE7777', '#E8C4C4']
-let colorChangeLoop = 0
+let colorValue = 0
 function colorChange() {
-    colorChangeLoop = Math.floor(Math.random() * 8)
+    colorValue = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 
