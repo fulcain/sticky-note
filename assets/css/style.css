@@ -1,28 +1,40 @@
+/* font import */
+@font-face {
+    font-family: Iransans;
+    src: url(../fonts/Iranian\ Sans.ttf);
+}
+
 /* General Changes START*/
+
+/* all elements */
 * {
-    font-family: cursive;
+    font-family: cursive, Iransans;
 
 }
 
+/* body */
 body {
-    background: #A9D39E;
+    background-image: url(../images/noise\ gray.jpg);
 }
 
+/* container */
 .container {
     width: 1300px;
     margin: 25px auto;
-    background: rgb(255, 255, 255);
+    /* background-image: linear-gradient(90deg, #a1c4fd 10%, #c2e9fb 90%); */
+    background-image: linear-gradient(90deg, #ffffff 10%, #c2e9fb 90%);
     padding: 20px;
     border-radius: 10px;
 }
 
+/* editing  */
 .editing {
     outline: none;
     line-height: 25px;
+    font-size: 20px;
 }
 
 /* icon styles START */
-
 .icon-styles {
     transition: .1s;
     cursor: pointer;
@@ -30,28 +42,40 @@ body {
 }
 
 .icon-styles:hover {
-    transform: scale(1.1);
+    transform: scale(1.2);
 }
 
-.icon-styles:active {
+.icon-styles:active:not(.bx-info-circle) {
     transform: scale(.9);
 }
 
-#add-todo-note-btn:hover,
-#add-upcomming-note-btn:hover {
+/* add button */
+.bxs-plus-circle {
+    transition-duration: .2s;
+}
+
+.bxs-plus-circle:hover {
     color: green;
 }
 
+/* trash button */
 .bx-trash:hover {
     color: red;
 }
 
+/* save button */
 .bx-save:hover {
     color: blue;
 }
 
+/* hint button */
+.hint:hover {
+    color: rgb(189, 189, 189);
+}
+
 /* icon styles END */
 /* General Changes END*/
+
 /* hint START */
 .hint {
     display: inline;
@@ -63,7 +87,7 @@ body {
 .hint::before {
     content: 'You can press " = " on your keyboard to save';
     position: absolute;
-    right:-270px;
+    right: -270px;
     top: 6px;
     text-align: center;
     width: 300px;
@@ -78,12 +102,12 @@ body {
     visibility: hidden;
     opacity: 0;
 }
-.hint:hover::before{
+
+.hint:hover::before {
     visibility: visible;
     opacity: 1;
-    right:-300px;
+    right: -305px;
 }
-
 /* hint END */
 
 /* note attributes START */
@@ -99,6 +123,7 @@ body {
     vertical-align: middle;
 }
 
+/* note attributes i */
 .note-attributes i {
     cursor: pointer;
     font-size: 20px;
@@ -112,10 +137,12 @@ body {
     width: 100%;
 }
 
+/* button box  i*/
 .button-box i {
     padding-right: 10px;
 }
 /* note attributes END */
+
 /* whole note box styles START */
 .whole-note-box-styles {
     padding: 70px;
@@ -143,45 +170,29 @@ body {
 
 
 }
-
 /* each note box styles END*/
 /* whole note box styles END */
 
-/* header START */
-.header {
-    margin: 25px 70px 0 70px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header h3 {
-    font-size: 20px;
-    text-transform: uppercase;
-}
-
-.header img {
-    width: 50px;
-    vertical-align: middle;
-    border-radius: 20%;
-
-}
-
-/* header END */
 /* add new note START */
 .add-new-note {
     margin: 20px 0 0 70px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     vertical-align: middle;
     gap: 10px;
-    width: max-content;
     color: rgb(34, 34, 34);
     border-radius: 50px;
 
 }
 
+.add-new-note>div:first-of-type {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* add new note h2 */
 .add-new-note h2 {
     position: relative;
 }
@@ -195,22 +206,10 @@ body {
     color: black;
     border-radius: 100%;
 }
-
-
 /* add new note END */
 
-
-#ClearLocalStorage {
-    position: absolute;
-    top: 10px;
-    color: red;
-    font-size: 9px;
-    cursor: pointer;
-    transition-duration: .2s;
-}
-
-
 /* Media query */
+
 /* for 1024px */
 @media only screen and (max-width:1024px) {
     .container {
@@ -218,7 +217,11 @@ body {
     }
 
     .whole-note-box-styles {
-        gap: 30px;
+        gap: 20px;
+    }
+
+    .each-note-box-styles {
+        width: 220px;
     }
 }
 
@@ -226,6 +229,10 @@ body {
 @media only screen and (max-width:768px) {
     .container {
         width: 650px;
+    }
+
+    .each-note-box-styles {
+        width: 220px;
     }
 
     .whole-note-box-styles {
@@ -240,35 +247,17 @@ body {
     }
 
     .each-note-box-styles {
-        min-width: 200px;
-        max-width: 200px;
-        min-height: 200px;
-
-
+        width: 250px;
     }
 
     .add-new-note {
-
         margin: 20px 0 0 0;
-        display: flex;
-        align-items: center;
-        vertical-align: middle;
-        gap: 10px;
-        width: max-content;
-        color: black;
-        border-radius: 50px;
-    }
-
-    .header img {
-        width: 30px;
     }
 
     .whole-note-box-styles {
         flex-direction: column;
         align-items: center;
         padding: 30px;
-        gap: 30px;
-
     }
 }
 
@@ -278,32 +267,18 @@ body {
         width: 290px;
     }
 
-    /* .whole-note-box-styles {
-        gap: 30px;
-    } */
+    .whole-note-box-styles {
+        padding-left: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
     .each-note-box-styles {
-        min-width: 180px;
-        max-width: 180px;
-        min-height: 180px;
-
-
+        width: 230px;
     }
 
     .add-new-note {
-        margin: 30px 0 0 0;
-
+        margin-top: 30px;
     }
 
-    .header {
-
-        gap: 10px;
-    }
-
-    .header img {
-        width: 20px;
-    }
-
-    .header h3 {
-        font-size: 12px;
-    }
 }

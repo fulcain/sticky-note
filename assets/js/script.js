@@ -1,30 +1,41 @@
 // ----------------------------------------- variables START -----------------------------------------
 
-// todo list whole note box
-let toDoNoteBoxEl = document.querySelector(".todo-list-note-box"),
-    // all todo notes
-    eachTodoNote = document.querySelectorAll(".each-todo-list-note-box"),
-    // todo save btn
-    ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn"),
-    // todo delete note btn
-    ToDoDeleteBtnEl = document.querySelectorAll(".todo-delete-note-btn"),
-    // todo add note btn
-    addTodoBtnEl = document.querySelector("#add-todo-note-btn"),
-    // array that contains all todolist elements
-    ToDoListArray = [],
+// whole note box
+let noteBoxEl = document.querySelector(".note-box"),
+
+    // all notes
+    eachNote = document.querySelectorAll(".each-note-box"),
+
+    // save btn
+    saveBtn = document.querySelectorAll(".save-note-btn"),
+
+    // delete note btn
+    deleteBtn = document.querySelectorAll(".delete-note-btn"),
+
+    // add note btn
+    addNoteBtn = document.querySelector("#add-note-btn"),
+
+    // array that contains all elements
+    noteListAraay = [],
+
     // gets localStorageItems
-    ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
+    noteLocalStorage = JSON.parse(localStorage.getItem('notes'))
 
 // ----------------------------------------- variables END -----------------------------------------
 
-// ----------------------------------------- functions START -----------------------------------------
+// ----------------------------------------- functions and gerenal code START -----------------------------------------
+
+// loads from localStorage
+if (noteLocalStorage) {
+    noteBoxEl.innerHTML = noteLocalStorage
+}
 
 // add new note function
 function addNote() {
     // creates the noteBox div
     let eachNoteBox = document.createElement('div')
     // adds class names to the noteBox div
-    eachNoteBox.classList.add('each-note-box-styles', 'each-todo-list-note-box')
+    eachNoteBox.classList.add('each-note-box-styles', 'each-note-box')
     // adds an attribute to the noteBox div
     eachNoteBox.setAttribute('style', `background:${colorValue};`)
 
@@ -69,76 +80,87 @@ function addNote() {
 
     // creates saveBtn(i) element
     let saveEl = document.createElement('i')
-    saveEl.classList.add("bx", "bx-save", "bx-save", 'todo-save-note-btn')
+    saveEl.classList.add("bx", "bx-save", "bx-save", 'save-note-btn')
     // adds the saveBtn(i) to noteAttributeDiv
     btnBox.appendChild(saveEl)
     // creates deleteBtn(i) element
     let trashEl = document.createElement('i')
-    trashEl.classList.add("bx", "bx-trash", "icon-styles", 'todo-delete-note-btn')
+    trashEl.classList.add("bx", "bx-trash", "icon-styles", 'delete-note-btn')
     // adds the deleteBtn(i)i element to the noteAttributeDiv
     btnBox.appendChild(trashEl)
 
     // adds the noteBox to the whole noteBox
-    toDoNoteBoxEl.appendChild(eachNoteBox)
+    noteBoxEl.appendChild(eachNoteBox)
 }
 
 // changes the title 
-// calling the title from HTML document
 let TitleEL = document.querySelector('title')
-
 function ChangeTitles(titleText) {
-
+    function timOut() {
+        setTimeout(resetTheTitle, 2000)
+    }
     function resetTheTitle() {
         TitleEL.innerHTML = 'Sticky Notes'
     }
-
-    function myTimeOutFunction() {
-        setTimeout(resetTheTitle, 2000)
-    }
-    myTimeOutFunction()
+    timOut()
     resetTheTitle()
     TitleEL.innerHTML = titleText
 }
 
 // remove note function
-
 function removeNote() {
+    
     // updates both btns and notes
-    ToDoDeleteBtnEl = document.querySelectorAll('.todo-delete-note-btn')
+    deleteBtn = document.querySelectorAll('.delete-note-btn')
+
     // loops throw the nodelist
-
-    ToDoDeleteBtnEl.forEach(item => {
+    deleteBtn.forEach(item => {
         item.addEventListener("dblclick", () => {
-            item.parentElement.parentElement.parentElement.remove()
-            ToDoListArray = toDoNoteBoxEl.innerHTML
-            localStorage.setItem("toDoKey", JSON.stringify(ToDoListArray))
-            console.log();
-            ChangeTitles('---------- Note Deleted! ----------')
+            removeNoteProcess()
         })
+
+        // remove note and change title
+        function removeNoteProcess() {
+            item.parentElement.parentElement.parentElement.remove()
+            noteListAraay = noteBoxEl.innerHTML
+            localStorage.setItem("notes", JSON.stringify(noteListAraay))
+            ChangeTitles('------ Note Deleted! ------')
+        }
     })
-
-
 }
 
 // save notes function
-
 function saveNote() {
+
     // updates both btns and notes
-    ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn")
-    eachTodoNote = document.querySelectorAll(".todo-list-note-box")
-    // loops throw the nodelist
-    for (let i = 0; i < ToDosaveBtn.length; i++) {
-        ToDosaveBtn[i].addEventListener("click", () => {
-            ToDoListArray = ToDosaveBtn[i].parentElement.parentElement.parentElement.parentElement.innerHTML
-            ChangeTitles('---------- Note Saved! ----------')
-            localStorage.setItem("toDoKey", JSON.stringify(ToDoListArray))
+    saveBtn = document.querySelectorAll(".save-note-btn")
+    eachNote = document.querySelectorAll(".note-box")
+
+    // loops throw save buttons
+    for (let i = 0; i < saveBtn.length; i++) {
+
+        // save on keydown
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "=") {
+                saveNoteProcess()
+            }
         })
+
+        // save on click
+        saveBtn[i].addEventListener("click", () => {
+            saveNoteProcess()
+        })
+
+        // save note and change title
+        function saveNoteProcess() {
+            noteListAraay = saveBtn[i].parentElement.parentElement.parentElement.parentElement.innerHTML
+            ChangeTitles('----- Note Saved! -----')
+            localStorage.setItem("notes", JSON.stringify(noteListAraay))
+        }
     }
-
-
 }
-// gets hour function
 
+// gets hour and date
 let currentTime = ''
 function addHour() {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -146,63 +168,35 @@ function addHour() {
     currentTime = `${hourEl.getHours()}:${hourEl.getMinutes()} / ${months[hourEl.getMonth()]} ${hourEl.getDay()},${hourEl.getFullYear()}`
 }
 
-//loads from localStorage 
-
-function loadFromLocalStorage() {
-
-}
-
 // takes random color from the array
-
 let colorValue = 0
 function colorChange() {
-    colorValue = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    colorValue = `#${Math.random().toString(16).slice(-6)}`;
+
 }
 
+// ----------------------------------------- functions and gerenal code END -----------------------------------------
 
-// ----------------------------------------- functions END -----------------------------------------
+// ----------------------------------------- add note START -----------------------------------------
 
-// ----------------------------------------- todo list START -----------------------------------------
-
-// adds new todo note
-addTodoBtnEl.addEventListener("click", () => {
-    colorChange()
-    addNote()
-    removeNote()
-    saveNote()
-    addHour()
-    ChangeTitles('---------- Note Added! ----------')
-
+// adds new note
+addNoteBtn.addEventListener("click", () => {
+    colorChange(), addNote(), removeNote(), saveNote(), addHour()
+    ChangeTitles('------ Note Added! ------')
 })
 
-// loads from localStorage
-if (ToDoLocalStorage) {
-    toDoNoteBoxEl.innerHTML += ToDoLocalStorage
-}
-document.addEventListener("keydown", (e) => {
-    if (e.key === "=") {
-        for (let i = 0; i < ToDosaveBtn.length; i++) {
-            ToDoListArray = ToDosaveBtn[i].parentElement.parentElement.parentElement.parentElement.innerHTML
-            ChangeTitles('---------- Note Saved! ----------')
-            localStorage.setItem("toDoKey", JSON.stringify(ToDoListArray))
-        }
-    }
-})
-// ----------------------------------------- todo list END -----------------------------------------
+// ----------------------------------------- add note END -----------------------------------------
 
 // loads functions on page reload
-
 document.addEventListener('DOMContentLoaded', () => {
     removeNote()
     saveNote()
     addHour()
-    eachTodoNote = document.querySelectorAll(".each-todo-list-note-box")
-    // todo save btn
-    ToDosaveBtn = document.querySelectorAll(".todo-save-note-btn")
-    // todo delete note btn
-    ToDoDeleteBtnEl = document.querySelectorAll(".todo-delete-note-btn")
-    // todo add note btn
-    addTodoBtnEl = document.querySelector("#add-todo-note-btn")
-    // gets localStorageItems
-    ToDoLocalStorage = JSON.parse(localStorage.getItem('toDoKey'))
+    eachNote = document.querySelectorAll(".each-note-box")
+    // save note button
+    saveBtn = document.querySelectorAll(".save-note-btn")
+    //  delete note button
+    deleteBtn = document.querySelectorAll(".delete-note-btn")
+    // todo add note button
+    addNoteBtn = document.querySelector("#add-note-btn")
 })
