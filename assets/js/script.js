@@ -182,9 +182,6 @@ function saveNote() {
     }
 }
 
-// all keyboard keys array
-let allKeys = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l"]
-
 // save to localStorage funtction
 function saveToLocalStorage() {
     notelistArray = noteBoxEl.innerHTML
