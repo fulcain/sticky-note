@@ -24,15 +24,15 @@ let noteBoxEl = document.querySelector(".note-box"),
     // delete all button
     deleteAllButton = document.querySelector('#delete-all-notes-btn')
 
-    // delete all confirmation box
-    deleteAllConfirmation = document.querySelector('#delete-all-confirmation')
+// delete all confirmation box
+deleteAllConfirmation = document.querySelector('#delete-all-confirmation')
 
-    // delete all confirmation yes
-    deleteAllYes = document.querySelector('#delete-yes')
+// delete all confirmation yes
+deleteAllYes = document.querySelector('#delete-yes')
 
-    // delete all confirmation no
-    deleteAllNo = document.querySelector('#delete-no')
-    
+// delete all confirmation no
+deleteAllNo = document.querySelector('#delete-no')
+
 
 // ----------------------------------------- variables END -----------------------------------------
 
@@ -150,20 +150,29 @@ function saveNote() {
     saveBtn = document.querySelectorAll(".save-note-btn")
     eachNote = document.querySelectorAll(".note-box")
 
+    // saves on keyboard keys
+    document.addEventListener("keypress", (e) => {
+        if (e.key = e.key) {
+            // only saves with no message
+            saveToLocalStorage()
+        }
+    })
     // loops throw save buttons
     for (let i = 0; i < saveBtn.length; i++) {
 
-        // save on keydown
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "=") {
-                saveNoteProcess()
+        // save on mouse click 
+        window.addEventListener('click', (e) => {
+            if (e.button == 0 || e.button == 1 || e.button == 2 || e.button == 3 || e.button == 4) {
+                // only saves with no message
+                saveToLocalStorage()
             }
         })
 
-        // save on click
+        // save on keyboard click
         saveBtn[i].addEventListener("click", () => {
             saveNoteProcess()
         })
+
 
         // save note and change title
         function saveNoteProcess() {
@@ -173,8 +182,11 @@ function saveNote() {
     }
 }
 
+// all keyboard keys array
+let allKeys = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l"]
+
 // save to localStorage funtction
-function saveToLocalStorage(){
+function saveToLocalStorage() {
     notelistArray = noteBoxEl.innerHTML
     localStorage.setItem("notes", JSON.stringify(notelistArray))
 }
@@ -201,20 +213,20 @@ function colorChange() {
 // reloads the delete all Confirmation box 
 deleteAllConfirmation.style.display = "none"
 
-deleteAllButton.addEventListener("click", () =>{
-    if (deleteAllConfirmation.style.display == "none"){
+deleteAllButton.addEventListener("click", () => {
+    if (deleteAllConfirmation.style.display == "none") {
         deleteAllConfirmation.style.display = "flex"
     } else {
         deleteAllConfirmation.style.display = "none"
     }
-    deleteAllYes.addEventListener("dblclick", () =>{
+    deleteAllYes.addEventListener("dblclick", () => {
         noteBoxEl.innerHTML = ''
         saveToLocalStorage()
         deleteAllConfirmation.style.display = "none"
     })
-    deleteAllNo.addEventListener("click", () =>{
+    deleteAllNo.addEventListener("click", () => {
         deleteAllConfirmation.style.display = "none"
-        
+
     })
 })
 
@@ -224,7 +236,7 @@ deleteAllButton.addEventListener("click", () =>{
 
 // adds new note
 addNoteBtn.addEventListener("click", () => {
-    colorChange(), addNote(), removeNote(), saveNote(), addHour(),saveToLocalStorage()
+    colorChange(), addNote(), removeNote(), saveNote(), addHour(), saveToLocalStorage()
     ChangeTitles('------ Note Added! ------')
 })
 

@@ -87,13 +87,13 @@ body {
 }
 
 .hint>div::before {
-    content: '* Press " = " on your keyboard to save\a * click on " x " to delete all notes';
+    content: 'click on " x " to delete all notes';
     white-space: pre;
     position: absolute;
     right: -20px;
     top: 3px;
     text-align: left;
-    width: 250px;
+    width: fit-content;
     font-size: 13px;
     background-color: rgb(255, 255, 255);
     border: 2px solid black;
