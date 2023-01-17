@@ -58,8 +58,9 @@ body {
     color: green;
 }
 
-/* trash button */
-.bx-trash:hover {
+/* trash and delete all button */
+.bx-trash:hover,
+.bx-x:hover {
     color: red;
 }
 
@@ -69,7 +70,7 @@ body {
 }
 
 /* hint button */
-.hint:hover {
+.hint i:hover {
     color: rgb(189, 189, 189);
 }
 
@@ -78,19 +79,21 @@ body {
 
 /* hint START */
 .hint {
-    display: inline;
+    display: flex;
+    justify-content: flex-end;
     font-size: 30px;
     position: relative;
-    cursor: pointer;
+    margin-bottom: 50px;
 }
 
-.hint::before {
-    content: 'You can press " = " on your keyboard to save';
+.hint>div::before {
+    content: '* Press " = " on your keyboard to save\a * click on " X " to delete all files';
+    white-space: pre;
     position: absolute;
-    right: -270px;
-    top: 6px;
-    text-align: center;
-    width: 300px;
+    right: -20px;
+    top: 3px;
+    text-align: left;
+    width: 250px;
     font-size: 13px;
     background-color: rgb(255, 255, 255);
     border: 2px solid black;
@@ -103,11 +106,12 @@ body {
     opacity: 0;
 }
 
-.hint:hover::before {
+.hint>div:hover::before {
     visibility: visible;
     opacity: 1;
-    right: -305px;
+    right: 35px;
 }
+
 /* hint END */
 
 /* note attributes START */
@@ -141,6 +145,7 @@ body {
 .button-box i {
     padding-right: 10px;
 }
+
 /* note attributes END */
 
 /* whole note box styles START */
@@ -170,6 +175,7 @@ body {
 
 
 }
+
 /* each note box styles END*/
 /* whole note box styles END */
 
@@ -205,6 +211,56 @@ body {
     left: 0;
     color: black;
     border-radius: 100%;
+}
+
+/* delete all button box */
+#delete-all-button-box {
+    position: relative;
+}
+
+/* delete all confirmation */
+#delete-all-confirmation {
+    flex-direction: row;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 120%;
+    left: -150%;
+    display: none;
+
+    transition-delay: .2s;
+}
+
+#delete-all-confirmation span {
+    background-color: rgb(204, 204, 204);
+    margin-inline: 3px;
+    padding: 7px;
+    border-radius: 20px;
+
+    /* Chrome and Opera */
+    user-select: none;
+    /* Safari */
+    -webkit-user-select: none;
+
+    /* Konqueror HTML */
+    -khtml-user-select: none;
+
+    /* Firefox */
+    -moz-user-select: none;
+
+    /* Internet Explorer/Edge */
+    -ms-user-select: none;
+}
+
+#delete-all-confirmation span:hover{
+    background-color: rgb(136, 135, 135);
+}
+#delete-all-confirmation span:active{
+    background-color: rgb(66, 65, 65);
 }
 /* add new note END */
 

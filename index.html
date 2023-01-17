@@ -31,7 +31,11 @@
     <div class="container">
 
         <!-- hint START-->
-        <div class="hint"><i class='bx bx-info-circle icon-styles '></i></div>
+        <div class="hint">
+            <div>
+                <i class='bx bx-info-circle icon-styles'></i>
+            </div>
+        </div>
         <!-- hint END-->
 
         <!-- note box START -->
@@ -41,6 +45,13 @@
             <div>
                 <h2>ToDo list</h2>
                 <i class='bx bxs-plus-circle icon-styles' id="add-note-btn"></i>
+                <div id="delete-all-button-box">
+                    <i class='bx bx-x icon-styles' id="delete-all-notes-btn"></i>
+                    <div id="delete-all-confirmation">
+                        <span id="delete-yes">YES</span>
+                        <span id="delete-no">NO</span>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- add new note END-->
@@ -53,4 +64,5 @@
         <!-- js link  -->
         <script src="assets/js/script.js"></script>
 </body>
+
 </html>

@@ -16,14 +16,29 @@ let noteBoxEl = document.querySelector(".note-box"),
     addNoteBtn = document.querySelector("#add-note-btn"),
 
     // array that contains all elements
-    noteListAraay = [],
+    notelistArray = noteBoxEl.innerHTML = [],
 
     // gets localStorageItems
-    noteLocalStorage = JSON.parse(localStorage.getItem('notes'))
+    noteLocalStorage = JSON.parse(localStorage.getItem('notes')),
+
+    // delete all button
+    deleteAllButton = document.querySelector('#delete-all-notes-btn')
+
+    // delete all confirmation box
+    deleteAllConfirmation = document.querySelector('#delete-all-confirmation')
+
+    // delete all confirmation yes
+    deleteAllYes = document.querySelector('#delete-yes')
+
+    // delete all confirmation no
+    deleteAllNo = document.querySelector('#delete-no')
+    
 
 // ----------------------------------------- variables END -----------------------------------------
 
 // ----------------------------------------- functions and gerenal code START -----------------------------------------
+
+// functions 
 
 // loads from localStorage
 if (noteLocalStorage) {
@@ -93,7 +108,7 @@ function addNote() {
     noteBoxEl.appendChild(eachNoteBox)
 }
 
-// changes the title 
+// change title function
 let TitleEL = document.querySelector('title')
 function ChangeTitles(titleText) {
     function timOut() {
@@ -109,7 +124,7 @@ function ChangeTitles(titleText) {
 
 // remove note function
 function removeNote() {
-    
+
     // updates both btns and notes
     deleteBtn = document.querySelectorAll('.delete-note-btn')
 
@@ -121,9 +136,8 @@ function removeNote() {
 
         // remove note and change title
         function removeNoteProcess() {
+            saveToLocalStorage()
             item.parentElement.parentElement.parentElement.remove()
-            noteListAraay = noteBoxEl.innerHTML
-            localStorage.setItem("notes", JSON.stringify(noteListAraay))
             ChangeTitles('------ Note Deleted! ------')
         }
     })
@@ -153,14 +167,19 @@ function saveNote() {
 
         // save note and change title
         function saveNoteProcess() {
-            noteListAraay = saveBtn[i].parentElement.parentElement.parentElement.parentElement.innerHTML
+            saveToLocalStorage()
             ChangeTitles('----- Note Saved! -----')
-            localStorage.setItem("notes", JSON.stringify(noteListAraay))
         }
     }
 }
 
-// gets hour and date
+// save to localStorage funtction
+function saveToLocalStorage(){
+    notelistArray = noteBoxEl.innerHTML
+    localStorage.setItem("notes", JSON.stringify(notelistArray))
+}
+
+// get hour and date function
 let currentTime = ''
 function addHour() {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -168,12 +187,36 @@ function addHour() {
     currentTime = `${hourEl.getHours()}:${hourEl.getMinutes()} / ${months[hourEl.getMonth()]} ${hourEl.getDay()},${hourEl.getFullYear()}`
 }
 
-// takes random color from the array
+// random color from the array function
 let colorValue = 0
 function colorChange() {
     colorValue = `#${Math.random().toString(16).slice(-6)}`;
 
 }
+
+// general code
+
+// delete all confirmation 
+
+// reloads the delete all Confirmation box 
+deleteAllConfirmation.style.display = "none"
+
+deleteAllButton.addEventListener("click", () =>{
+    if (deleteAllConfirmation.style.display == "none"){
+        deleteAllConfirmation.style.display = "flex"
+    } else {
+        deleteAllConfirmation.style.display = "none"
+    }
+    deleteAllYes.addEventListener("dblclick", () =>{
+        noteBoxEl.innerHTML = ''
+        saveToLocalStorage()
+        deleteAllConfirmation.style.display = "none"
+    })
+    deleteAllNo.addEventListener("click", () =>{
+        deleteAllConfirmation.style.display = "none"
+        
+    })
+})
 
 // ----------------------------------------- functions and gerenal code END -----------------------------------------
 
@@ -181,7 +224,7 @@ function colorChange() {
 
 // adds new note
 addNoteBtn.addEventListener("click", () => {
-    colorChange(), addNote(), removeNote(), saveNote(), addHour()
+    colorChange(), addNote(), removeNote(), saveNote(), addHour(),saveToLocalStorage()
     ChangeTitles('------ Note Added! ------')
 })
 
