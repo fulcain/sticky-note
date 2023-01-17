@@ -87,7 +87,7 @@ body {
 }
 
 .hint>div::before {
-    content: '* Press " = " on your keyboard to save\a * click on " X " to delete all files';
+    content: '* Press " = " on your keyboard to save\a * click on " x " to delete all notes';
     white-space: pre;
     position: absolute;
     right: -20px;
