@@ -136,8 +136,8 @@ function removeNote() {
 
         // remove note and change title
         function removeNoteProcess() {
-            saveToLocalStorage()
             item.parentElement.parentElement.parentElement.remove()
+            saveToLocalStorage()
             ChangeTitles('------ Note Deleted! ------')
         }
     })
