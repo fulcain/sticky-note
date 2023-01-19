@@ -237,11 +237,6 @@ body {
     transition-delay: .2s;
 }
 
-.deleteAllshow {
-    /* we need to use important because we are overwriting an id element which has more 
-    priority over class */
-    display: flex !important;
-}
 
 #delete-all-confirmation span {
     background-color: rgb(204, 204, 204);

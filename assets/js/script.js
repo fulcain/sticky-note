@@ -189,12 +189,18 @@ function colorChange() {
 
 // general code
 
+// updates the style
+deleteAllConfirmation.style.display = "none"
 // toggle deleteAllConfirmation variable
 // if you click yes it clears the noteBoxEl innerhtml and saves it to localStorage and sets the display to none
 // if you click no it sets the display to none 
 deleteAllButton.addEventListener("click", () => {
-    deleteAllConfirmation.classList.toggle('deleteAllshow')
-
+   
+    if (deleteAllConfirmation.style.display == "none"){
+        deleteAllConfirmation.style.display = "flex"
+    } else {
+        deleteAllConfirmation.style.display = "none"
+    }
     deleteAllYes.addEventListener("dblclick", () => {
         noteBoxEl.innerHTML = ''
         saveToLocalStorage()
