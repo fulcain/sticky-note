@@ -22,16 +22,19 @@ let noteBoxEl = document.querySelector(".note-box"),
     noteLocalStorage = JSON.parse(localStorage.getItem('notes')),
 
     // delete all button
-    deleteAllButton = document.querySelector('#delete-all-notes-btn')
+    deleteAllButton = document.querySelector('#delete-all-notes-btn'),
 
-// delete all confirmation box
-deleteAllConfirmation = document.querySelector('#delete-all-confirmation')
+    // delete all confirmation box
+    deleteAllConfirmation = document.querySelector('#delete-all-confirmation'),
 
-// delete all confirmation yes
-deleteAllYes = document.querySelector('#delete-yes')
+    // delete all confirmation yes
+    deleteAllYes = document.querySelector('#delete-yes'),
 
-// delete all confirmation no
-deleteAllNo = document.querySelector('#delete-no')
+    // delete all confirmation no
+    deleteAllNo = document.querySelector('#delete-no'),
+
+    // title element
+    TitleEL = document.querySelector('title')
 
 
 // ----------------------------------------- variables END -----------------------------------------
@@ -41,75 +44,42 @@ deleteAllNo = document.querySelector('#delete-no')
 // functions 
 
 // loads from localStorage
+// puts the items from localStorage in the noteBoxEl variable
 if (noteLocalStorage) {
     noteBoxEl.innerHTML = noteLocalStorage
 }
 
-// add new note function
-function addNote() {
-    // creates the noteBox div
-    let eachNoteBox = document.createElement('div')
-    // adds class names to the noteBox div
-    eachNoteBox.classList.add('each-note-box-styles', 'each-note-box')
-    // adds an attribute to the noteBox div
-    eachNoteBox.setAttribute('style', `background:${colorValue};`)
-
-    // creates a p element
-    let pElment = document.createElement('p')
-    // adds an attribute to the p element
-    pElment.setAttribute('contenteditable', 'true')
-    // adds class name to p element
-    pElment.classList.add('editing')
-    // adds the p element to noteBox
-    eachNoteBox.appendChild(pElment)
-
-    // creates note attribute div
-    let noteAttributeDiv = document.createElement('div')
-    // adds class name to the attribute div
-    noteAttributeDiv.classList.add('note-attributes')
-    // adds the noteAttribute div to noteBox
-    eachNoteBox.appendChild(noteAttributeDiv)
-
-    // creates hourElement
-    let hourElement = document.createElement('p')
-    // adds classes to the hourElement
-    hourElement.classList.add('added-hour-and-date')
-    //grabs the time from currentTime
-    let currentTimeTextNode = document.createTextNode(currentTime)
-    // adds the time grabbed from currentTime to hourElement
-    hourElement.appendChild(currentTimeTextNode)
-    // adds the hourElement to noteAttributeDiv
-    noteAttributeDiv.appendChild(hourElement)
-
-    //creates horizantal line
-    let hrline = document.createElement('hr')
-    hrline.setAttribute("style", 'border: 1px solid rgb(0, 0, 0);')
-    hrline.setAttribute("width", '100%')
-    noteAttributeDiv.appendChild(hrline)
-
-    // creates btns box el
-    let btnBox = document.createElement("div")
-    btnBox.classList.add('button-box')
-    // adds the btns box el to noteAttributeDiv
-    noteAttributeDiv.appendChild(btnBox)
-
-    // creates saveBtn(i) element
-    let saveEl = document.createElement('i')
-    saveEl.classList.add("bx", "bx-save", "bx-save", 'save-note-btn')
-    // adds the saveBtn(i) to noteAttributeDiv
-    btnBox.appendChild(saveEl)
-    // creates deleteBtn(i) element
-    let trashEl = document.createElement('i')
-    trashEl.classList.add("bx", "bx-trash", "icon-styles", 'delete-note-btn')
-    // adds the deleteBtn(i)i element to the noteAttributeDiv
-    btnBox.appendChild(trashEl)
-
-    // adds the noteBox to the whole noteBox
-    noteBoxEl.appendChild(eachNoteBox)
+// TITLE: Note Template function
+// returns a note element that containing some other elements which makes a note box element
+// has two varibles used from following functions:
+// addHour(): currentTime
+// colorChange(): colorValue
+function noteTemplate() {
+    return `
+    <div class="each-note-box-styles each-note-box" style="background:${colorValue};">
+        <p contenteditable="true" class="editing"></p>
+        <div class="note-attributes">
+            <p class="added-hour-and-date">${currentTime}</p>
+            <hr style="border: 1px solid rgb(0, 0, 0);" width="100%">
+            <div class="button-box">
+                <i class="bx bx-save save-note-btn"></i>
+                <i class="bx bx-trash icon-styles delete-note-btn"></i>
+            </div>
+         </div>
+    </div>
+                `
 }
 
-// change title function
-let TitleEL = document.querySelector('title')
+// TITLE: add note function
+// grabs the note template from noteTemplate function
+// puts it in the noteBoxEl variable
+function addNote() {
+    noteBoxEl.insertAdjacentHTML("afterbegin", noteTemplate())
+}
+
+// TITLE: change title on events
+// changes the title based on argument given to titleText parameter
+// sets timeout on reseting title back to normal after 2 seconds
 function ChangeTitles(titleText) {
     function timOut() {
         setTimeout(resetTheTitle, 2000)
@@ -122,7 +92,11 @@ function ChangeTitles(titleText) {
     TitleEL.innerHTML = titleText
 }
 
-// remove note function
+// TITLE: remove note function
+// loops throw deleteBtn element  
+// removes each notebox on deleteBtn element's double click
+// saves the result to localStorage
+// calls the ChangeTitles function to change title based on given argument
 function removeNote() {
 
     // updates both btns and notes
@@ -143,17 +117,22 @@ function removeNote() {
     })
 }
 
-// save notes function
+// TITLE: save note function
+// loops throw saveBtn element  
+// saves each notebox on saveBtn element's click
+// saves each notebox on any mouse click on window
+// saves on keyboard keys click
+// saves the result to localStorage
+// calls the ChangeTitles function to change title based on given argument
 function saveNote() {
 
     // updates both btns and notes
     saveBtn = document.querySelectorAll(".save-note-btn")
     eachNote = document.querySelectorAll(".note-box")
 
-    // saves on keyboard keys
+    // saves on keyboard keys click
     document.addEventListener("keypress", (e) => {
         if (e.key = e.key) {
-            // only saves with no message
             saveToLocalStorage()
         }
     })
@@ -163,12 +142,11 @@ function saveNote() {
         // save on mouse click 
         window.addEventListener('click', (e) => {
             if (e.button == 0 || e.button == 1 || e.button == 2 || e.button == 3 || e.button == 4) {
-                // only saves with no message
                 saveToLocalStorage()
             }
         })
 
-        // save on keyboard click
+        // save on saveBtn click
         saveBtn[i].addEventListener("click", () => {
             saveNoteProcess()
         })
@@ -182,13 +160,18 @@ function saveNote() {
     }
 }
 
-// save to localStorage funtction
+// TITLE: save notes to localStorage
+// puts the noteBoxEl into an array
+// saves the array into a key in localStorage
 function saveToLocalStorage() {
     notelistArray = noteBoxEl.innerHTML
     localStorage.setItem("notes", JSON.stringify(notelistArray))
 }
 
-// get hour and date function
+// TITLE: hour and date function
+// grabs hour and date from Date object
+// puts hour / minute / month / day / year into currentTime variable
+// grabs the date and put them into moths array as an index to replace the int to month name
 let currentTime = ''
 function addHour() {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -196,7 +179,8 @@ function addHour() {
     currentTime = `${hourEl.getHours()}:${hourEl.getMinutes()} / ${months[hourEl.getMonth()]} ${hourEl.getDay()},${hourEl.getFullYear()}`
 }
 
-// random color from the array function
+// TITLE: random color array
+// puts a random color into coloValue variable
 let colorValue = 0
 function colorChange() {
     colorValue = `#${Math.random().toString(16).slice(-6)}`;
@@ -205,17 +189,12 @@ function colorChange() {
 
 // general code
 
-// delete all confirmation 
-
-// reloads the delete all Confirmation box 
-deleteAllConfirmation.style.display = "none"
-
+// toggle deleteAllConfirmation variable
+// if you click yes it clears the noteBoxEl innerhtml and saves it to localStorage and sets the display to none
+// if you click no it sets the display to none 
 deleteAllButton.addEventListener("click", () => {
-    if (deleteAllConfirmation.style.display == "none") {
-        deleteAllConfirmation.style.display = "flex"
-    } else {
-        deleteAllConfirmation.style.display = "none"
-    }
+    deleteAllConfirmation.classList.toggle('deleteAllshow')
+
     deleteAllYes.addEventListener("dblclick", () => {
         noteBoxEl.innerHTML = ''
         saveToLocalStorage()
