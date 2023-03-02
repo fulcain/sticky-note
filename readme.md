@@ -1,4 +1,4 @@
-# who does the app works
+# how does the app works
 - click on (+) to add a note
 - you can delete each not if you double click on trash icon
 - you can click on save to save each note
