@@ -121,14 +121,12 @@ body {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    justify-content: space-between;
-    background-color: rgb(125, 116, 116);
-    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px 10px 10px 10px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid rgb(102, 102, 102);
     vertical-align: middle;
 }
-
 /* note attributes i */
 .note-attributes i {
     cursor: pointer;
@@ -172,8 +170,8 @@ body {
     height: 250px;
     border-radius: 30px 5px 30px 5px;
     padding: 15px;
-    box-shadow: 1px 1px 30px rgb(63, 63, 63);
-    border: 2px solid black;
+    box-shadow: 1px 1px 5px rgb(63, 63, 63);
+    border: 1px solid rgb(102, 102, 102);
 
 
 }
