@@ -62,7 +62,7 @@ function noteTemplate() {
             <p class="added-hour-and-date">${currentTime}</p>
             <hr style="border: 1px solid rgb(0, 0, 0);" width="100%">
             <div class="button-box">
-                <i class="bx bx-save save-note-btn"></i>
+                <i class="bx bx-save icon-styles save-note-btn"></i>
                 <i class="bx bx-trash icon-styles delete-note-btn"></i>
             </div>
          </div>
