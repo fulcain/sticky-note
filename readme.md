@@ -7,7 +7,7 @@
 
 # Installation
 
-- if you can't use fulcain.github.io/sticky-note
+- if you can't use [sticky-note github page](https://fulcain.github.io/sticky-note)
 - click on code and download zip
 - open the index.html file
 - book mark it for a quick access
