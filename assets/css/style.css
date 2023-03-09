@@ -119,14 +119,14 @@ body {
 /* note attributes START */
 .note-attributes {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    padding: 20px 10px 10px 10px;
+    padding: 10px;
     border-radius: 10px;
     border: 1px solid rgb(102, 102, 102);
-    vertical-align: middle;
 }
+
 /* note attributes i */
 .note-attributes i {
     cursor: pointer;

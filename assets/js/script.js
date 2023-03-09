@@ -16,7 +16,7 @@ let noteBoxEl = document.querySelector(".note-box"),
     addNoteBtn = document.querySelector("#add-note-btn"),
 
     // array that contains all elements
-    notelistArray = noteBoxEl.innerHTML = [],
+    noteListArray = noteBoxEl.innerHTML = [],
 
     // gets localStorageItems
     noteLocalStorage = JSON.parse(localStorage.getItem('notes')),
@@ -39,7 +39,7 @@ let noteBoxEl = document.querySelector(".note-box"),
 
 // ----------------------------------------- variables END -----------------------------------------
 
-// ----------------------------------------- functions and gerenal code START -----------------------------------------
+// ----------------------------------------- functions and general code START -----------------------------------------
 
 // functions 
 
@@ -164,8 +164,8 @@ function saveNote() {
 // puts the noteBoxEl into an array
 // saves the array into a key in localStorage
 function saveToLocalStorage() {
-    notelistArray = noteBoxEl.innerHTML
-    localStorage.setItem("notes", JSON.stringify(notelistArray))
+    noteListArray = noteBoxEl.innerHTML
+    localStorage.setItem("notes", JSON.stringify(noteListArray))
 }
 
 // TITLE: hour and date function
@@ -195,8 +195,8 @@ deleteAllConfirmation.style.display = "none"
 // if you click yes it clears the noteBoxEl innerhtml and saves it to localStorage and sets the display to none
 // if you click no it sets the display to none 
 deleteAllButton.addEventListener("click", () => {
-   
-    if (deleteAllConfirmation.style.display == "none"){
+
+    if (deleteAllConfirmation.style.display == "none") {
         deleteAllConfirmation.style.display = "flex"
     } else {
         deleteAllConfirmation.style.display = "none"
@@ -212,7 +212,7 @@ deleteAllButton.addEventListener("click", () => {
     })
 })
 
-// ----------------------------------------- functions and gerenal code END -----------------------------------------
+// ----------------------------------------- functions and general code END -----------------------------------------
 
 // ----------------------------------------- add note START -----------------------------------------
 
@@ -237,3 +237,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // todo add note button
     addNoteBtn = document.querySelector("#add-note-btn")
 })
+
+// 
