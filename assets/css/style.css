@@ -154,8 +154,8 @@ body {
     padding: 70px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: flex-start;
+    gap: 80px;
 
     padding-top: 50px;
     position: relative;
@@ -168,7 +168,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
 
-    width: 220px;
+    width: 230px;
     height: 250px;
     border-radius: 30px 5px 30px 5px;
     padding: 15px;
