@@ -155,7 +155,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 80px;
+    gap: 60px;
 
     padding-top: 50px;
     position: relative;
@@ -278,7 +278,7 @@ body {
     }
 
     .whole-note-box-styles {
-        gap: 20px;
+        gap: 30px;
     }
 
     .each-note-box-styles {
