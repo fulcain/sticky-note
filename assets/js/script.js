@@ -10,14 +10,8 @@ let noteBoxEl = document.querySelector(".note-box"),
 	addNoteBtn = document.querySelector("#add-note-btn"),
 	// gets localStorageItems
 	noteLocalStorage = JSON.parse(localStorage.getItem("notes")),
-	// delete all button
-	deleteAllButton = document.querySelector("#delete-all-notes-btn"),
 	// delete all confirmation box
 	deleteAllConfirmation = document.querySelector("#delete-all-confirmation"),
-	// delete all confirmation yes
-	deleteAllYes = document.querySelector("#delete-yes"),
-	// delete all confirmation no
-	deleteAllNo = document.querySelector("#delete-no"),
 	// title element
 	TitleEL = document.querySelector("title");
 
@@ -168,28 +162,40 @@ function colorChange() {
 	colorValue = `#${Math.random().toString(16).slice(-6)}`;
 }
 
-// general code
+function removeAllNotes() {
+	// delete all confirmation yes
+	const deleteAllYes = document.querySelector("#delete-yes");
 
-// updates the style
-deleteAllConfirmation.style.display = "none";
-// toggle deleteAllConfirmation variable
-// if you click yes it clears the noteBoxEl innerhtml and saves it to localStorage and sets the display to none
-// if you click no it sets the display to none
-deleteAllButton.addEventListener("click", () => {
-	if (deleteAllConfirmation.style.display == "none") {
-		deleteAllConfirmation.style.display = "flex";
-	} else {
-		deleteAllConfirmation.style.display = "none";
-	}
-	deleteAllYes.addEventListener("dblclick", () => {
-		noteBoxEl.innerHTML = "";
-		saveToLocalStorage();
-		deleteAllConfirmation.style.display = "none";
+	// delete all confirmation no
+	const deleteAllNo = document.querySelector("#delete-no");
+
+	// delete all button
+	const deleteAllButton = document.querySelector("#delete-all-notes-btn");
+
+	// updates the style
+	deleteAllConfirmation.style.display = "none";
+
+	// Toggles the visibility of deleteAllButtons element
+	deleteAllButton.addEventListener("click", () => {
+		if (deleteAllConfirmation.style.display == "none") {
+			deleteAllConfirmation.style.display = "flex";
+		} else {
+			deleteAllConfirmation.style.display = "none";
+		}
+
+		// Removes all notes if "YES" is clicked
+		deleteAllYes.addEventListener("dblclick", () => {
+			noteBoxEl.innerHTML = "";
+			saveToLocalStorage();
+			deleteAllConfirmation.style.display = "none";
+		});
+
+		// Closes the "deleteAllButtons" element if "NO" is clicked
+		deleteAllNo.addEventListener("click", () => {
+			deleteAllConfirmation.style.display = "none";
+		});
 	});
-	deleteAllNo.addEventListener("click", () => {
-		deleteAllConfirmation.style.display = "none";
-	});
-});
+}
 
 // ----------------------------------------- functions and general code END -----------------------------------------
 
@@ -214,6 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	removeNote();
 	saveNote();
 	addHour();
+	removeAllNotes();
 	eachNote = document.querySelectorAll(".each-note-box");
 	//  delete note button
 	deleteBtn = document.querySelectorAll(".delete-note-btn");
