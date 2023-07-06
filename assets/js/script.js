@@ -6,8 +6,6 @@ let noteBoxEl = document.querySelector(".note-box"),
 	eachNote = document.querySelectorAll(".each-note-box"),
 	// delete note btn
 	deleteBtn = document.querySelectorAll(".delete-note-btn"),
-	// add note btn
-	addNoteBtn = document.querySelector("#add-note-btn"),
 	// gets localStorageItems
 	noteLocalStorage = JSON.parse(localStorage.getItem("notes")),
 	// delete all confirmation box
@@ -201,6 +199,8 @@ function removeAllNotes() {
 
 // ----------------------------------------- add note START -----------------------------------------
 
+let addNoteBtn = document.querySelector("#add-note-btn");
+
 // adds new note
 addNoteBtn.addEventListener("click", () => {
 	colorChange();
@@ -209,6 +209,7 @@ addNoteBtn.addEventListener("click", () => {
 	saveNote();
 	addHour();
 	ChangeTitles("------ Note Added! ------");
+
 	// Adds new note by calling the noteTemplate function
 	saveToLocalStorage();
 });
@@ -221,10 +222,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	saveNote();
 	addHour();
 	removeAllNotes();
+
+	// Updates element on page load
 	eachNote = document.querySelectorAll(".each-note-box");
-	//  delete note button
 	deleteBtn = document.querySelectorAll(".delete-note-btn");
 	addNoteBtn = document.querySelector("#add-note-btn");
 });
-
-//
