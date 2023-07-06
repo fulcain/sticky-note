@@ -4,14 +4,10 @@
 let noteBoxEl = document.querySelector(".note-box"),
 	// all notes
 	eachNote = document.querySelectorAll(".each-note-box"),
-	// save btn
-	saveBtn = document.querySelectorAll(".save-note-btn"),
 	// delete note btn
 	deleteBtn = document.querySelectorAll(".delete-note-btn"),
 	// add note btn
 	addNoteBtn = document.querySelector("#add-note-btn"),
-	// array that contains all elements
-	noteListArray = (noteBoxEl.innerHTML = []),
 	// gets localStorageItems
 	noteLocalStorage = JSON.parse(localStorage.getItem("notes")),
 	// delete all button
@@ -58,13 +54,6 @@ function noteTemplate() {
                 `;
 }
 
-// TITLE: add note function
-// grabs the note template from noteTemplate function
-// puts it in the noteBoxEl variable
-function addNote() {
-	noteBoxEl.insertAdjacentHTML("afterbegin", noteTemplate());
-}
-
 // TITLE: change title on events
 // changes the title based on argument given to titleText parameter
 // sets timeout on reseting title back to normal after 2 seconds
@@ -78,25 +67,26 @@ function ChangeTitles(titleText) {
 
 // TITLE: remove note function
 // loops throw deleteBtn element
-// removes each notebox on deleteBtn element's double click
+// removes each noteBox on deleteBtn element's double click
 // saves the result to localStorage
 // calls the ChangeTitles function to change title based on given argument
 function removeNote() {
 	// updates both btns and notes
 	deleteBtn = document.querySelectorAll(".delete-note-btn");
 
-	// loops throw the nodelist
+	// loops throw the nodeList
 	deleteBtn.forEach((item) => {
 		item.addEventListener("dblclick", () => {
-			removeNoteProcess();
-		});
+			// Removes the note
+			item.closest(".each-note-box").remove();
 
-		// remove note and change title
-		function removeNoteProcess() {
-			item.parentElement.parentElement.parentElement.remove();
+			// Saves the note List to localStorage
 			saveToLocalStorage();
+
+			// Changes the title
+			// TODO: replace with silverBox
 			ChangeTitles("------ Note Deleted! ------");
-		}
+		});
 	});
 }
 
@@ -109,7 +99,7 @@ function removeNote() {
 // calls the ChangeTitles function to change title based on given argument
 function saveNote() {
 	// updates both btns and notes
-	saveBtn = document.querySelectorAll(".save-note-btn");
+	const saveBtn = document.querySelectorAll(".save-note-btn");
 	eachNote = document.querySelectorAll(".note-box");
 
 	// saves on keyboard keys click
@@ -150,8 +140,8 @@ function saveNote() {
 // puts the noteBoxEl into an array
 // saves the array into a key in localStorage
 function saveToLocalStorage() {
-	noteListArray = noteBoxEl.innerHTML;
-	localStorage.setItem("notes", JSON.stringify(noteListArray));
+	let = noteList = noteBoxEl.innerHTML;
+	localStorage.setItem("notes", JSON.stringify(noteList));
 }
 
 // TITLE: hour and date function
@@ -216,13 +206,10 @@ deleteAllButton.addEventListener("click", () => {
 
 // adds new note
 addNoteBtn.addEventListener("click", () => {
-	colorChange(),
-		addNote(),
-		removeNote(),
-		saveNote(),
-		addHour(),
-		saveToLocalStorage();
+	colorChange(), removeNote(), saveNote(), addHour(), saveToLocalStorage();
 	ChangeTitles("------ Note Added! ------");
+	// Adds new note by calling the noteTemplate function
+	noteBoxEl.insertAdjacentHTML("afterbegin", noteTemplate());
 });
 
 // ----------------------------------------- add note END -----------------------------------------
@@ -233,11 +220,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	saveNote();
 	addHour();
 	eachNote = document.querySelectorAll(".each-note-box");
-	// save note button
-	saveBtn = document.querySelectorAll(".save-note-btn");
 	//  delete note button
 	deleteBtn = document.querySelectorAll(".delete-note-btn");
-	// todo add note button
 	addNoteBtn = document.querySelector("#add-note-btn");
 });
 
