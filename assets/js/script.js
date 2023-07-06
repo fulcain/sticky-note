@@ -71,12 +71,12 @@ function ChangeTitles(titleText) {
 // saves the result to localStorage
 // calls the ChangeTitles function to change title based on given argument
 function removeNote() {
-	// updates both btns and notes
+	// Update deleteButton
 	deleteBtn = document.querySelectorAll(".delete-note-btn");
 
 	// loops throw the nodeList
 	deleteBtn.forEach((item) => {
-		item.addEventListener("dblclick", () => {
+		item.addEventListener("click", () => {
 			// Removes the note
 			item.closest(".each-note-box").remove();
 
@@ -90,17 +90,12 @@ function removeNote() {
 	});
 }
 
-// TITLE: save note function
-// loops throw saveBtn element
-// saves each notebox on saveBtn element's click
-// saves each notebox on any mouse click on window
-// saves on keyboard keys click
-// saves the result to localStorage
+// TITLE: Save note function
+// saves each notebox on saveBtn click, mouse click, keyboard clicks by calling saveToLocalStorage() function
 // calls the ChangeTitles function to change title based on given argument
 function saveNote() {
 	// updates both btns and notes
 	const saveBtn = document.querySelectorAll(".save-note-btn");
-	eachNote = document.querySelectorAll(".note-box");
 
 	// saves on keyboard keys click
 	document.addEventListener("keypress", (e) => {
@@ -108,32 +103,28 @@ function saveNote() {
 			saveToLocalStorage();
 		}
 	});
+
 	// loops throw save buttons
 	for (let i = 0; i < saveBtn.length; i++) {
-		// save on mouse click
-		window.addEventListener("click", (e) => {
-			if (
-				e.button == 0 ||
-				e.button == 1 ||
-				e.button == 2 ||
-				e.button == 3 ||
-				e.button == 4
-			) {
-				saveToLocalStorage();
-			}
-		});
-
 		// save on saveBtn click
 		saveBtn[i].addEventListener("click", () => {
-			saveNoteProcess();
-		});
-
-		// save note and change title
-		function saveNoteProcess() {
 			saveToLocalStorage();
 			ChangeTitles("----- Note Saved! -----");
-		}
+		});
 	}
+
+	// save on mouse click
+	window.addEventListener("click", (e) => {
+		if (
+			e.button == 0 ||
+			e.button == 1 ||
+			e.button == 2 ||
+			e.button == 3 ||
+			e.button == 4
+		) {
+			saveToLocalStorage();
+		}
+	});
 }
 
 // TITLE: save notes to localStorage
@@ -172,7 +163,7 @@ function addHour() {
 
 // TITLE: random color array
 // puts a random color into coloValue variable
-let colorValue = 0;
+let colorValue = "";
 function colorChange() {
 	colorValue = `#${Math.random().toString(16).slice(-6)}`;
 }
@@ -206,10 +197,14 @@ deleteAllButton.addEventListener("click", () => {
 
 // adds new note
 addNoteBtn.addEventListener("click", () => {
-	colorChange(), removeNote(), saveNote(), addHour(), saveToLocalStorage();
+	colorChange();
+	noteBoxEl.insertAdjacentHTML("afterbegin", noteTemplate());
+	removeNote();
+	saveNote();
+	addHour();
 	ChangeTitles("------ Note Added! ------");
 	// Adds new note by calling the noteTemplate function
-	noteBoxEl.insertAdjacentHTML("afterbegin", noteTemplate());
+	saveToLocalStorage();
 });
 
 // ----------------------------------------- add note END -----------------------------------------
