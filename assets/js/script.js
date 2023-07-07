@@ -123,14 +123,11 @@ function saveNote() {
 // puts the noteBoxEl into an array
 // saves the array into a key in localStorage
 function saveToLocalStorage() {
-	let = noteList = noteBoxEl.innerHTML;
-	localStorage.setItem("notes", JSON.stringify(noteList));
+	localStorage.setItem("notes", JSON.stringify(noteBoxEl.innerHTML));
 }
 
 // TITLE: hour and date function
-// grabs hour and date from Date object
-// puts hour / minute / month / day / year into currentTime variable
-// grabs the date and put them into moths array as an index to replace the int to month name
+// Get current date and hour using Date()
 let currentTime = "";
 function addHour() {
 	let months = [
@@ -147,14 +144,21 @@ function addHour() {
 		"November",
 		"December"
 	];
-	let hourEl = new Date();
-	currentTime = `${hourEl.getHours()}:${hourEl.getMinutes()} / ${
-		months[hourEl.getMonth()]
-	} ${hourEl.getDay()},${hourEl.getFullYear()}`;
+
+	let date = new Date();
+
+	// Set current hour, minute, Month , Day , Year
+	// @example: 15:01 / July 5,2023
+	currentTime = `${date.getHours()}:${date.getMinutes()} / ${
+		months[date.getMonth()]
+	} ${date.getDay()},${date.getFullYear()}`;
+
+	// Replace all numbers below 9 with a 0 before them
+	currentTime = currentTime.replace(/\b(\d)\b/g, "0$1");
 }
 
 // TITLE: random color array
-// puts a random color into coloValue variable
+// Creates random color in hexadecimal format
 let colorValue = "";
 function colorChange() {
 	colorValue = `#${Math.random().toString(16).slice(-6)}`;
@@ -170,7 +174,7 @@ function removeAllNotes() {
 	// delete all button
 	const deleteAllButton = document.querySelector("#delete-all-notes-btn");
 
-	// updates the style
+	// Change the visibility of "deleteAllConfirmation" element
 	deleteAllConfirmation.style.display = "none";
 
 	// Toggles the visibility of deleteAllButtons element
@@ -209,8 +213,6 @@ addNoteBtn.addEventListener("click", () => {
 	saveNote();
 	addHour();
 	ChangeTitles("------ Note Added! ------");
-
-	// Adds new note by calling the noteTemplate function
 	saveToLocalStorage();
 });
 
